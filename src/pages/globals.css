@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-neutral-0: 255 255 255;
+        --color-neutral-50: 251 251 251;
+        --color-neutral-100: 248 248 248;
+        --color-neutral-150: 243 243 243;
+        --color-neutral-200: 242 242 242;
+        --color-neutral-300: 177 177 177;
+        --color-neutral-400: 152 152 152;
+        --color-neutral-500: 130 130 130;
+        --color-neutral-600: 108 108 108;
+        --color-neutral-700: 72 72 72;
+        --color-neutral-750: 65 65 65;
+        --color-neutral-800: 50 50 50;
+        --color-neutral-850: 42 42 42;
+        --color-neutral-900: 37 37 37;
+        --color-neutral-950: 33 33 33;
+    }
+
+    :root[class~=dark] {
+        --color-neutral-0: 33 33 33;
+        --color-neutral-50: 37 37 37;
+        --color-neutral-100: 42 42 42;
+        --color-neutral-150: 50 50 50;
+        --color-neutral-200: 65 65 65;
+        --color-neutral-300: 72 72 72;
+        --color-neutral-400: 108 108 108;
+        --color-neutral-500: 130 130 130;
+        --color-neutral-600: 152 152 152;
+        --color-neutral-700: 177 177 177;
+        --color-neutral-750: 242 242 242;
+        --color-neutral-800: 243 243 243;
+        --color-neutral-850: 248 248 248;
+        --color-neutral-900: 251 251 251;
+        --color-neutral-950: 255 255 255;
+    }
+}

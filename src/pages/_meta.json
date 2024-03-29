@@ -1,0 +1,26 @@
+{
+    "index": {
+        "type": "page",
+        "title": "Next-impl solutions",
+        "display": "hidden",
+        "theme": {
+            "layout": "raw"
+        }
+    },
+    "list": {
+        "type": "page",
+        "title": "Implementations",
+        "theme": {
+            "typesetting": "article",
+            "layout": "full"
+        }
+    },
+    "404": {
+        "type": "page",
+        "display": "hidden",
+        "theme": {
+            "timestamp": false,
+            "typesetting": "article"
+        }
+    }
+}
