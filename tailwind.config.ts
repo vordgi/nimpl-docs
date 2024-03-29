@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import { type Config } from "tailwindcss";
 
 const config: Config = {
   content: [
@@ -8,10 +8,32 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        'neutral-0': "rgb(var(--color-neutral-0) / <alpha-value>)",
+        'neutral-50': "rgb(var(--color-neutral-50) / <alpha-value>)",
+        'neutral-100': "rgb(var(--color-neutral-100) / <alpha-value>)",
+        'neutral-150': "rgb(var(--color-neutral-150) / <alpha-value>)",
+        'neutral-200': "rgb(var(--color-neutral-200) / <alpha-value>)",
+        'neutral-300': "rgb(var(--color-neutral-300) / <alpha-value>)",
+        'neutral-400': "rgb(var(--color-neutral-400) / <alpha-value>)",
+        'neutral-500': "rgb(var(--color-neutral-500) / <alpha-value>)",
+        'neutral-600': "rgb(var(--color-neutral-600) / <alpha-value>)",
+        'neutral-700': "rgb(var(--color-neutral-700) / <alpha-value>)",
+        'neutral-750': "rgb(var(--color-neutral-750) / <alpha-value>)",
+        'neutral-800': "rgb(var(--color-neutral-800) / <alpha-value>)",
+        'neutral-850': "rgb(var(--color-neutral-850) / <alpha-value>)",
+        'neutral-900': "rgb(var(--color-neutral-900) / <alpha-value>)",
+        'neutral-950': "rgb(var(--color-neutral-950) / <alpha-value>)",
+      },
+    },
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
       },
     },
   },
