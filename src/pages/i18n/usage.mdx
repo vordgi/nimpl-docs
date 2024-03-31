@@ -1,0 +1,157 @@
+# Usage
+
+## NimplI18nProvider
+
+It is recommended to use the configuring provider at the page level.
+
+```tsx
+import NimplI18nProvider from 'nimpl/i18n/NimplI18nProvider'
+
+export default function HomePage({ params }: { params: { lang: string } }) {
+    return (
+        <NimplI18nProvider lang={params.lang} clientTerms={['shared', 'banking.about']}>
+            {/* ... */}
+        </NimplI18nProvider>
+    )
+}
+```
+
+Client terms will be passed to the client. You can specify both namespaces and specific keys.
+
+*Note: Layout lives independently, so it needs to be wrapped in* `NimplI18nProvider` *separately.*
+
+## Server components
+
+Use `getTranslation` for simple translations
+
+```tsx
+import getTranslation from 'nimpl/i18n/getTranslation';
+
+const ServerComponent: React.FC = () => {
+    const { t } = getTranslation();
+
+    return (
+        <div>
+            {/* Welcome to Next Translation */}
+            {t('header.nav.home')}
+        </div>
+    )
+}
+```
+
+Use `ServerTranslation` to get complex translations
+
+```tsx
+import ServerTranslation from 'nimpl/i18n/ServerTranslation';
+
+const ServerComponent: React.FC = () => (
+    <ServerTranslation
+        term='intro.description' // We have {{number}} tariffs. Read more about pricings <link>special section</link>
+        components={{
+            link: <a href='#' />
+        }}
+        query={{ number: 5 }}
+    />
+)
+```
+
+## Client components
+
+The translations specified in `NimplI18nProvider` are passed to the client, but you can specify additional translations in any parent server component using `NimplI18nTransmitter`.
+
+You can specify both namespaces and specific keys.
+
+```tsx
+import NimplI18nTransmitter from 'nimpl/i18n/NimplI18nTransmitter';
+import ClientComponent from './ClientComponent';
+
+const ServerComponent: React.FC = () => (
+    <NimplI18nTransmitter terms={['header.nav']}>
+        <ClientComponent />
+    </NimplI18nTransmitter>
+)
+```
+
+Use `useTranslation` for simple translations
+
+```tsx
+"use client";
+
+import useTranslation from 'nimpl/i18n/useTranslation';
+
+const ClientComponent: React.FC = () => {
+    const { t } = useTranslation();
+
+    return (
+        <div>
+            {/* Welcome to Next Translation */}
+            {t('header.nav.home')}
+        </div>
+    )
+}
+```
+
+Use `ClientTranslation` for complex translations
+
+```tsx
+"use client";
+
+import ClientTranslation from 'nimpl/i18n/ClientTranslation';
+
+const ClientComponent: React.FC = () => (
+    <ClientTranslation
+        term='intro.description' // We have {{number}} tariffs. Read more about pricings <link>special section</link>
+        components={{
+            link: <a href='#' />
+        }}
+        query={{ number: 5 }}
+    />
+)
+```
+
+## Other
+
+Use `createTranslation` to get a simple translation outside the page tree.
+
+```tsx
+import createTranslation from 'nimpl/i18n/createTranslation'
+// ...
+export async function generateMetadata({ params }: { params: { lang: string } }) {
+    const { t } = await createTranslation(params.lang);
+    return {
+        title: t('homePage.meta.title'),
+    }
+}
+```
+
+## Options
+
+You can pass `opts` as the second argument of `t`.
+
+Now you can pass a query there to inject variable strings inside translations.
+
+```tsx
+const Component: React.FC = () => {
+    return (
+        <div>
+            {/* Price starts from ${{price}} */}
+            {t('pricing.tariffs.solo', { query: { price: 16.99 } })}
+        </div>
+    )
+}
+```
+
+Also you can inject query to client terms on the server side. For example, when they depend on the server environment or when you get values from a database on the server.
+
+Just add an array value instead of a string in terms arr, where the second element will be the query object.
+
+```tsx
+import NimplI18nTransmitter from 'nimpl/i18n/NimplI18nTransmitter';
+import ClientComponent from './ClientComponent';
+
+const ServerComponent: React.FC = () => (
+    <NimplI18nTransmitter terms={[['home.welcome', { stage: process.env.GITHUB_REF === 'main' ? 'production' : 'test' }]]}>
+        <ClientComponent />
+    </NimplI18nTransmitter>
+)
+```

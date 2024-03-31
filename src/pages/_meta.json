@@ -38,7 +38,9 @@
     }
   },
   "getters": "getters",
+  "i18n": "i18n",
   "cache-adapter": "cache-adapter",
+  "cache-in-memory": "cache-in-memory",
   "404": {
     "type": "page",
     "display": "hidden",
