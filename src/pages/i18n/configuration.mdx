@@ -1,0 +1,86 @@
+# Configuration
+
+## Config file
+
+Create `nimpl-i18n.js` file in the root directory
+
+```jsx
+/** @type {import('nimpl/i18n/configuration/types').Config} */
+module.exports = {
+    load: async (lang) => {
+        const resp = await fetch(`https://api.translation-example.com/terms/${lang}`, {
+            method: 'POST',
+        });
+        const data = await resp.json();
+        return { data, meta: {} };
+    },
+    languages: ['en', 'de', 'fr'],
+    revalidate: 3600,
+    checkIsActual: async (lang, lastLoadMeta) => {
+        // ...
+    },
+    retryAttempts: 2,
+};
+```
+
+## Options
+
+**load [required]**
+
+Asynchronous function for translates loading.
+
+Function will receive 2 arguments:
+
+`key` - current language;
+
+`meta` - meta data from previous request.
+
+Function should return object with keys:
+
+`data` - object with translates;
+
+`meta` - object with additional data which will be passed to the next load.
+
+*Don't combine next.js fetch caching with the next-translation load caching, it will repeat the logic and may not work correctly.*
+
+**languages [required]**
+
+Array of allowed languages. Languages outside of this array will be ignored.
+
+**revalidate [optional]**
+
+Option works similarly to the next.js option. Setting it to `false` will disable revalidation, meaning the data will be cached indefinitely. Setting it to `0` will request the data each time, while setting it to a `number` will determine the time in seconds for revalidation to occur.
+
+**retryAttempts [optional]**
+
+Number of retries when loading data (*3 by default*)
+
+**checkIsActual [optional]**
+
+Check that the data is up to date. Use it when you can perform additional steps to ensure that cached data is up to date. For example, make a HEAD request with meta information, or check the meta on a different route. Option type:
+
+`(key: string, meta?: { [key: string]: string }) => Promise<boolean>`
+
+where:
+
+`key` - target language
+
+`meta` - meta information returned from the load function
+
+## Configure app
+
+You also need to configure the environment for correct caching to work, for this you need to wrap your `next.config.js` in `nimplI18n`
+
+```js
+const nimplI18n = require('nimpl/i18n/nimplI18n').default;
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {};
+
+module.exports = async (phase) => {
+    const withNimplI18n = await nimplI18n(phase);
+    return withNimplI18n(nextConfig);
+}
+```
+
+*Note: the library does not modify the webpack or application configuration, it only configures the process.*
