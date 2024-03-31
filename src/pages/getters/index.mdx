@@ -1,0 +1,34 @@
+# nimpl/getters
+
+Implementation of server getters and server contexts in React Server Components without switching to SSR.
+
+*Before using the library, read the [Possible Issues](/getters/possible-issues)*
+
+## Installation
+
+**Using npm:**
+```sh npm2yarn copy
+npm i nimpl/getters
+```
+
+## Stability
+
+All getters are covered with tests. Tests are run on every release and every 6 hours on the latest **Canary** version of `Next.js`.
+
+In this way, you can be sure not only of the stability of the code, but also that if there is a breaking change in `Next.js`, this will immediately become known. *Even before the release of a stable version of `Next.js`.*
+
+## Examples
+
+You can see examples in the [package repository](https://github.com/vordgi/nimpl-getters/tree/main/examples).
+
+## What's next?
+
+Why getters instead of extending existing hooks?
+
+I'm not very fond of the idea of extending hooks - on the server, it won't be a hook no matter how you look at it. These are specifically getters. Moreover, a client-side hook can be synchronous, while a server-side getter for the same task can be asynchronous, making it a more versatile format.
+
+## Additional
+
+Please consider giving a star if you like it, it shows that the package is useful and helps continue work on this and other packages.
+
+Create tasks for identified issues, desired getters, or various improvements.

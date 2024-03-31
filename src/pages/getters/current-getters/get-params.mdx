@@ -1,0 +1,21 @@
+# get-params
+
+*Uses next.js functionality*
+
+Retrieves parameters for the current page.
+
+This is a more complex function that essentially (not quite) gathers parameters from the file path of the current page and the path of the page. Next.js does not have ready-made functionality for this. Currently, Next.js determines the parameters for segments during the tree building process from top to bottom.
+
+On the one hand, I like the idea of adding this capability to the library, I think it can be useful, but still, it will be fundamentally different logic compared to adding parameters to page props and layers, so the solution is not straightforward and may be completely redesigned.
+
+```tsx
+import { getParams } from 'next-impl-getters/get-params'
+
+export default function Component() {
+    const params = getParams()
+
+    return (
+        // ...
+    )
+}
+```

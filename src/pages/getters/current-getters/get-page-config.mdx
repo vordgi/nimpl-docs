@@ -1,0 +1,24 @@
+# get-page-config
+
+*Uses next.js functionality*
+
+Retrieves page config for the currently rendered page
+
+```tsx
+import { getPageConfig } from 'next-impl-getters/get-page-config'
+// ...
+
+export default function Component() {
+    const { basePath, dynamic, pagePath, revalidate } = getPageConfig()
+
+    // getters are not hooks, so you can use them inside conditions
+    if (dynamic === 'force-dynamic') {
+        const searchParams = getSearchParams()
+        // ...
+    }
+
+    return (
+        // ...
+    )
+}
+```

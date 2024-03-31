@@ -1,0 +1,61 @@
+# Server contexts
+
+*Uses only node.js and react.js functionality*
+
+Familiar React contexts, but working fully on the server
+
+1\. **Initialize the context**
+```tsx filename="./ExampleContext.ts"
+import createServerContext from "next-impl-getters/create-server-context"
+
+export const ExampleContext = createServerContext<{ data: string }>()
+```
+
+2\. **Transfer the data to the provider**
+```tsx filename="./ParentComponent.tsx"
+import { ExampleContext } from "./ExampleContext"
+import ChildComponent from "./ChildComponent"
+
+export default function ParentComponent() {
+    return (
+        <ExampleContext.Provider value={{ data: 'test' }}>
+            <ChildComponent />
+        </ExampleContext.Provider>
+    )
+}
+```
+
+3\. **Get context data**
+```tsx filename="./ChildComponent.tsx"
+import getServerContext from "next-impl-getters/get-server-context"
+import { ExampleContext } from "./ExampleContext"
+
+export default function ChildComponent() {
+    const context = getServerContext(ExampleContext)
+
+    return (
+        <div>
+            {context?.data}
+        </div>
+    )
+}
+```
+
+3\.1. **You can also use a consumer to get context data**
+```tsx filename="./ParentComponent.tsx"
+import { ExampleContext } from "./ExampleContext"
+import ChildComponent from "./ChildComponent"
+
+export default function ParentComponent() {
+    return (
+        <ExampleContext.Provider value={{ data: 'test' }}>
+            <ExampleContext.Consumer>
+                {(data) => {
+                    //...
+                    return <ChildComponent />
+                }}
+            </ExampleContext.Consumer>
+        </ExampleContext.Provider>
+    )
+}
+```
