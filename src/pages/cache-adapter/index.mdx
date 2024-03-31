@@ -1,0 +1,22 @@
+# nimpl/cache-adapter
+
+An adapter that allows you to use any cache handler on the client and server side and switch between them. Adds support for running next.js applications in multiple instances.
+
+## Installation
+
+**Using npm:**
+```sh npm2yarn copy
+npm i nimpl/cache-adapter
+```
+
+## How it works
+
+For a common cache between instances (replicas, copies) - the cache should be separate from each application instance. This solution does it by creating a separate service.
+
+The application can then work with the cache through this remote server. The server acts as a cacheHandler and can be used from the running application and/or from the build mode.
+
+The server does not need to be restarted each time. And outdated data will be deleted automatically when launching a new version of the application.
+
+## Examples
+
+Base example with [nimpl/cache-in-memory](https://github.com/vordgi/nimpl-cache/tree/main/packages/nimpl-cache-in-memory). [See example](https://github.com/vordgi/nimpl-cache/tree/main/example).
