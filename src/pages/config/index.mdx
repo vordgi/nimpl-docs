@@ -1,0 +1,27 @@
+# nimpl/config
+
+The package allows for convenient management of application configuration in Next.js environments.
+
+## Motivation
+
+For the config, Next.js only offers environment variables - regular ones for the server, and ones with NEXT_PUBLIC prefix, which will be embedded during the build process.
+
+And here are a few downsides:
+
+- It's not convenient for large configuration objects.
+- It doesn't cover all use cases, such as runtime config and react runtime config (when the image is built once and used in different environments).
+
+On the other hand, next-impl-config offers support for 4 different configuration options for your applications.
+
+Another important advantage of next-impl-config is that it supports functions (*synchronous and asynchronous*) and will successfully merge their result.
+
+## Installation
+
+**Using npm:**
+```sh npm2yarn copy
+npm i nimpl/config
+```
+
+## Examples
+
+[Base example](https://github.com/vordgi/nimpl-config/tree/main/example).
