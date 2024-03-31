@@ -1,0 +1,26 @@
+# Structure
+
+All configs are stored in the config directory. Each variant is stored independently in a subdirectory with the same name.
+
+config
+
+- server
+- build
+- postbuild
+- runtime
+
+All types support the following config variants:
+
+- default.js
+- default.local.js
+- [TARGET_ENV].js
+- [TARGET_ENV].local.js
+- envs.js
+- envs.local.js
+
+The lower the config variant is in the list, the higher its priority.
+
+- default.js: Used as the default value, all config keys should be filled in this file.
+- [TARGET_ENV].js: Environment-dependent config (see [environment-dependent config](/config/configuration#environment-dependent-config)).
+- envs.js: Config with environment variables as values.
+- .local.js versions: Local versions that should be added to gitignore.

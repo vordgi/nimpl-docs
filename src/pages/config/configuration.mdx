@@ -1,0 +1,35 @@
+# Configuration
+
+## Environment-dependent config
+
+The default Environment-dependent config is the config with the current NODE_ENV. If you want to use a different key, pass it to `nextImplConfig`
+
+```js filename="next.config.js"
+const nextImplConfig = require('nimpl/config/with-next-impl-config').default;
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // ...
+};
+
+module.exports = nextImplConfig({ envs: ['development', 'staging', 'production'], targetEnv: process.env.MY_CUSTOM_ENV })(nextConfig);
+```
+
+## Custom config folder
+
+```js filename="next.config.js"
+const nextImplConfig = require('nimpl/config/with-next-impl-config').default;
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // ...
+};
+
+module.exports = nextImplConfig({ folder: 'custom-config-folder' })(nextConfig);
+```
+
+## Typescript
+
+When the application runs, the package will create a file with type declarations - `next-impl-config.d.ts`.
+
+After this, each config variant will be typed exactly in accordance with the default config.

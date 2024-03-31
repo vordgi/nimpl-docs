@@ -1,0 +1,54 @@
+# Usage
+
+## server
+
+The config is generated at runtime (based on the environment conditions at runtime).
+
+Recommended for API routes or in force-dynamic mode in server components.
+
+```jsx
+import { serverConfig } from 'nimpl/config/server-config';
+// ...
+const config = await serverConfig;
+```
+
+## build
+
+The config is generated at build time (based on the environment conditions at build time).
+
+Recommended for components that don't depend on the runtime environment.
+
+```jsx
+import { buildConfig } from 'nimpl/config/build-config';
+// ...
+const config = buildConfig;
+```
+
+## postbuild
+
+During the build process, configs are generated for each possible environment (based on the environment conditions at build time). Then, at runtime, the appropriate version is selected.
+
+Recommended for middleware.
+
+```jsx
+import { postbuildConfig } from 'nimpl/config/postbuild-config';
+// ...
+const config = postbuildConfig;
+```
+
+## runtime
+
+An API route is created that generates the config at the time of the request (based on the environment conditions at runtime). Then, on the client side, a provider is initialized that loads the config and returns it after loading (triggering a re-render).
+
+Recommended for components that depend on the runtime environment.
+
+```jsx
+'client';
+
+import useRuntimeConfig from 'nimpl/config/use-runtime-config';
+// ...
+const config = useRuntimeConfig();
+
+if (!config) return <p>Loading...</p>
+// ...
+```
