@@ -39,6 +39,7 @@
   },
   "getters": "getters",
   "i18n": "i18n",
+  "classnames-minifier": "classnames-minifier",
   "cache-adapter": "cache-adapter",
   "cache-in-memory": "cache-in-memory",
   "404": {

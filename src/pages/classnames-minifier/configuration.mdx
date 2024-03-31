@@ -1,0 +1,19 @@
+# Configuration
+
+```js filename="next.config.js"
+const { default: classnamesMinifier } = require('nimpl/classnames-minifier');
+
+module.exports = (phase) => classnamesMinifier({
+  prefix: '_',
+  reservedNames: ['_en', '_de'],
+  disabled: phase === PHASE_PRODUCTION_SERVER || process.env.NODE_ENV === 'development',
+})(nextConfig);
+```
+
+*It is recommended to disable minification for development.*
+
+## Options
+
+* `prefix` - custom prefix that will be added to each updated class;
+* `reservedNames` - array of reserved names that should not be used by this package (must include prefix);
+* `disabled` - disabling classnames minifying;
