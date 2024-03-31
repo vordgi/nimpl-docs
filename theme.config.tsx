@@ -1,4 +1,5 @@
 import { type DocsThemeConfig } from 'nextra-theme-docs'
+import { useConfig } from 'nextra-theme-docs'
 
 const config: DocsThemeConfig = {
     logo: (
@@ -22,6 +23,17 @@ const config: DocsThemeConfig = {
         text: '© 2024 nimpl'
     },
     docsRepositoryBase: 'https://github.com/vordgi/nimpl-app/tree/main',
+    useNextSeoProps() {
+        return {
+            titleTemplate: '%s – next-impl'
+        }
+    },
+    head: (
+        <>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <meta property="og:description" content="next-impl docs" />
+        </>
+    )
     // ... other theme options
 }
 

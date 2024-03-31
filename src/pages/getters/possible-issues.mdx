@@ -1,0 +1,11 @@
+# Possible issues
+
+As a potential risk of a server-side solution, the problem of Layouts is mentioned, that they do not rebuild, which is inherent in the app router foundation. I don't see any reason to change this logic.
+
+The most reliable approach, in my opinion, is to output messages to the console or even throw an error when this function is used in Layout or Error without the necessary conditions.
+
+So far, I haven't found a way to track in server-side components from which parent the component is being built.
+
+If it is not possible to do this, I would simply allow the implementation of this functionality with an additional note in the documentation that Layout does not rebuild, so using this function in it is not recommended.
+
+The problem with Layouts will also arise with the emergence of server-side contexts, so a solution to prohibit certain methods in it or simply recommend not using them is inevitable.

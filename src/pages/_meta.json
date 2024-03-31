@@ -7,13 +7,35 @@
             "layout": "raw"
         }
     },
-    "list": {
-        "type": "page",
-        "title": "Implementations",
-        "theme": {
-            "typesetting": "article",
-            "layout": "full"
+    "implementations": {
+      "title": "Implementations",
+      "type": "menu",
+      "items": {
+        "getters": {
+          "title": "getters",
+          "href": "/getters"
+        },
+        "i18n": {
+          "title": "i18n",
+          "href": "/i18n"
+        },
+        "config": {
+          "title": "config",
+          "href": "/config"
+        },
+        "cn-minifier": {
+          "title": "cn-minifier",
+          "href": "/cn-minifier"
+        },
+        "cache-adapter": {
+          "title": "cache-adapter",
+          "href": "/cache-adapter"
+        },
+        "cache-in-memory": {
+          "title": "cache-in-memory",
+          "href": "/cache-in-memory"
         }
+      }
     },
     "404": {
         "type": "page",
