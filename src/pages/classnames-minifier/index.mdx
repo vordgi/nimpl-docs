@@ -1,0 +1,14 @@
+# nimpl/classnames-minifier
+
+Library for configuring style _(css/scss/sass)_ modules to generate compressed classes (`.header` -> `.a`, `.nav` -> `.b`, ..., `.footer` -> `.aad`, etc.) with support for changes and rebuilding without clearing the built application. The package itself synchronizes minified classnames with components of the application compiled earlier.
+
+## Installation
+
+**Using npm:**
+```sh npm2yarn copy
+npm i nimpl/classnames-minifier
+```
+
+## Reasons
+
+*Compressing classes* can reduce the size of the generated html and css by up to *20%*, which will have a positive effect on page rendering and metrics (primarily [FCP](https://web.dev/first-contentful-paint/))
