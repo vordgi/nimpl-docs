@@ -7,7 +7,7 @@ The config is generated at runtime (based on the environment conditions at runti
 Recommended for API routes or in force-dynamic mode in server components.
 
 ```jsx
-import { serverConfig } from 'nimpl/config/server-config';
+import { serverConfig } from '@nimpl/config/server-config';
 // ...
 const config = await serverConfig;
 ```
@@ -19,7 +19,7 @@ The config is generated at build time (based on the environment conditions at bu
 Recommended for components that don't depend on the runtime environment.
 
 ```jsx
-import { buildConfig } from 'nimpl/config/build-config';
+import { buildConfig } from '@nimpl/config/build-config';
 // ...
 const config = buildConfig;
 ```
@@ -31,7 +31,7 @@ During the build process, configs are generated for each possible environment (b
 Recommended for middleware.
 
 ```jsx
-import { postbuildConfig } from 'nimpl/config/postbuild-config';
+import { postbuildConfig } from '@nimpl/config/postbuild-config';
 // ...
 const config = postbuildConfig;
 ```
@@ -45,7 +45,7 @@ Recommended for components that depend on the runtime environment.
 ```jsx
 'client';
 
-import useRuntimeConfig from 'nimpl/config/use-runtime-config';
+import useRuntimeConfig from '@nimpl/config/use-runtime-config';
 // ...
 const config = useRuntimeConfig();
 

@@ -4,8 +4,8 @@ The server is launched, to which the required cacheHandler is passed:
 
 ```js
 // @ts-check
-const createServer = require('nimpl/cache-adapter/src/create-server');
-const CacheHandler = require('nimpl/cache-in-memory');
+const createServer = require('@nimpl/cache-adapter/src/create-server');
+const CacheHandler = require('@nimpl/cache-in-memory');
 
 const server = createServer(new CacheHandler({}));
 
@@ -18,8 +18,8 @@ A special adapter is set up to work with the cache:
 
 ```js filename="cache-handler.js"
 // @ts-check
-const AppAdapter = require('nimpl/cache-adapter');
-const CacheHandler = require('nimpl/cache-in-memory');
+const AppAdapter = require('@nimpl/cache-adapter');
+const CacheHandler = require('@nimpl/cache-in-memory');
 
 class CustomCacheHandler extends AppAdapter {
     /** @param {any} options */

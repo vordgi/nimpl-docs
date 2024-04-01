@@ -5,7 +5,7 @@
 Create `nimpl-i18n.js` file in the root directory
 
 ```jsx
-/** @type {import('nimpl/i18n/configuration/types').Config} */
+/** @type {import('@nimpl/i18n/configuration/types').Config} */
 module.exports = {
     load: async (lang) => {
         const resp = await fetch(`https://api.translation-example.com/terms/${lang}`, {
@@ -72,7 +72,7 @@ where:
 You also need to configure the environment for correct caching to work, for this you need to wrap your `next.config.js` in `nimplI18n`
 
 ```js
-const nimplI18n = require('nimpl/i18n/nimplI18n').default;
+const nimplI18n = require('@nimpl/i18n/nimplI18n').default;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {};
