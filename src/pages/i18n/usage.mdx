@@ -1,24 +1,24 @@
 # Usage
 
-## NimplI18nProvider
+## I18nProvider
 
 It is recommended to use the configuring provider at the page level.
 
 ```tsx
-import NimplI18nProvider from '@nimpl/i18n/NimplI18nProvider'
+import I18nProvider from '@nimpl/i18n/I18nProvider'
 
 export default function HomePage({ params }: { params: { lang: string } }) {
     return (
-        <NimplI18nProvider lang={params.lang} clientTerms={['shared', 'banking.about']}>
+        <I18nProvider lang={params.lang} clientTerms={['shared', 'banking.about']}>
             {/* ... */}
-        </NimplI18nProvider>
+        </I18nProvider>
     )
 }
 ```
 
 Client terms will be passed to the client. You can specify both namespaces and specific keys.
 
-*Note: Layout lives independently, so it needs to be wrapped in* `NimplI18nProvider` *separately.*
+*Note: Layout lives independently, so it needs to be wrapped in* `I18nProvider` *separately.*
 
 ## Server components
 
@@ -57,18 +57,18 @@ const ServerComponent: React.FC = () => (
 
 ## Client components
 
-The translations specified in `NimplI18nProvider` are passed to the client, but you can specify additional translations in any parent server component using `NimplI18nTransmitter`.
+The translations specified in `I18nProvider` are passed to the client, but you can specify additional translations in any parent server component using `I18nTransmitter`.
 
 You can specify both namespaces and specific keys.
 
 ```tsx
-import NimplI18nTransmitter from '@nimpl/i18n/NimplI18nTransmitter';
+import I18nTransmitter from '@nimpl/i18n/I18nTransmitter';
 import ClientComponent from './ClientComponent';
 
 const ServerComponent: React.FC = () => (
-    <NimplI18nTransmitter terms={['header.nav']}>
+    <I18nTransmitter terms={['header.nav']}>
         <ClientComponent />
-    </NimplI18nTransmitter>
+    </I18nTransmitter>
 )
 ```
 
@@ -146,12 +146,12 @@ Also you can inject query to client terms on the server side. For example, when 
 Just add an array value instead of a string in terms arr, where the second element will be the query object.
 
 ```tsx
-import NimplI18nTransmitter from '@nimpl/i18n/NimplI18nTransmitter';
+import I18nTransmitter from '@nimpl/i18n/I18nTransmitter';
 import ClientComponent from './ClientComponent';
 
 const ServerComponent: React.FC = () => (
-    <NimplI18nTransmitter terms={[['home.welcome', { stage: process.env.GITHUB_REF === 'main' ? 'production' : 'test' }]]}>
+    <I18nTransmitter terms={[['home.welcome', { stage: process.env.GITHUB_REF === 'main' ? 'production' : 'test' }]]}>
         <ClientComponent />
-    </NimplI18nTransmitter>
+    </I18nTransmitter>
 )
 ```
