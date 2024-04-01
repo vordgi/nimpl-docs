@@ -1,6 +1,6 @@
 # @nimpl/config
 
-The package allows for convenient management of application configuration in Next.js environments.
+The package adding support for configuration for each possible next.js environment (*build, server, client, and edge*)
 
 ## Motivation
 
@@ -11,13 +11,12 @@ And here are a few downsides:
 - It's not convenient for large configuration objects.
 - It doesn't cover all use cases, such as runtime config and react runtime config (when the image is built once and used in different environments).
 
-On the other hand, next-impl-config offers support for 4 different configuration options for your applications.
+On the other hand, @nimpl/config offers support for 4 different configuration options for your applications.
 
-Another important advantage of next-impl-config is that it supports functions (*synchronous and asynchronous*) and will successfully merge their result.
+Another important advantage of @nimpl/config is that it supports functions (*synchronous and asynchronous*) and will successfully merge their result.
 
 ## Installation
 
-**Using npm:**
 ```sh npm2yarn copy
 npm i @nimpl/config
 ```

@@ -9,7 +9,7 @@ This type doesn't require any additional configuration.
 Next.js config needs to be wrapped with `nimplConfig`.
 
 ```jsx filename="next.config.js"
-const nimplConfig = require('@nimpl/config/with-next-impl-config').default;
+const { default: nimplConfig } = require('@nimpl/config/with-nimpl-config');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -24,7 +24,7 @@ module.exports = nimplConfig()(nextConfig);
 Possible environments need to be passed to `nimplConfig`.
 
 ```js filename="next.config.js"
-const nimplConfig = require('@nimpl/config/with-next-impl-config').default;
+const { default: nimplConfig } = require('@nimpl/config/with-nimpl-config');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
