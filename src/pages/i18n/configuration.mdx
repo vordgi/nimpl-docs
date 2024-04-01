@@ -69,17 +69,17 @@ where:
 
 ## Configure app
 
-You also need to configure the environment for correct caching to work, for this you need to wrap your `next.config.js` in `nimplI18n`
+You also need to configure the environment for correct caching to work, for this you need to wrap your `next.config.js` in `withI18n`
 
 ```js
-const nimplI18n = require('@nimpl/i18n/nimplI18n').default;
+const { default: withI18n } = require('@nimpl/i18n/withI18n');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {};
 
 module.exports = async (phase) => {
-    const withNimplI18n = await nimplI18n(phase);
-    return withNimplI18n(nextConfig);
+    const i18nWrapper = await withI18n(phase);
+    return i18nWrapper(nextConfig);
 }
 ```
 
