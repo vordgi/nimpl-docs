@@ -5,7 +5,7 @@
 The default Environment-dependent config is the config with the current NODE_ENV. If you want to use a different key, pass it to `nextImplConfig`
 
 ```js filename="next.config.js"
-const nextImplConfig = require('nimpl/config/with-next-impl-config').default;
+const nextImplConfig = require('@nimpl/config/with-next-impl-config').default;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -18,7 +18,7 @@ module.exports = nextImplConfig({ envs: ['development', 'staging', 'production']
 ## Custom config folder
 
 ```js filename="next.config.js"
-const nextImplConfig = require('nimpl/config/with-next-impl-config').default;
+const nextImplConfig = require('@nimpl/config/with-next-impl-config').default;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

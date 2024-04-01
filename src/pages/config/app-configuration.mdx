@@ -9,7 +9,7 @@ This type doesn't require any additional configuration.
 Next.js config needs to be wrapped with `nimplConfig`.
 
 ```jsx filename="next.config.js"
-const nimplConfig = require('nimpl/config/with-next-impl-config').default;
+const nimplConfig = require('@nimpl/config/with-next-impl-config').default;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -24,7 +24,7 @@ module.exports = nimplConfig()(nextConfig);
 Possible environments need to be passed to `nimplConfig`.
 
 ```js filename="next.config.js"
-const nimplConfig = require('nimpl/config/with-next-impl-config').default;
+const nimplConfig = require('@nimpl/config/with-next-impl-config').default;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -39,13 +39,13 @@ module.exports = nimplConfig({ envs: ['development', 'staging', 'production'] })
 First, create an API route.
 
 ```jsx filename="app/api/config/route.tsx"
-export { runtimeConfigApi as GET } from 'nimpl/config/runtime-config-api';
+export { runtimeConfigApi as GET } from '@nimpl/config/runtime-config-api';
 ```
 
 Wrap the application with the Provider.
 
 ```jsx filename="app/layout.tsx"
-import RuntimeConfigProvider from 'nimpl/config/runtime-config-provider';
+import RuntimeConfigProvider from '@nimpl/config/runtime-config-provider';
 
 export default function RootLayout() {
   return (

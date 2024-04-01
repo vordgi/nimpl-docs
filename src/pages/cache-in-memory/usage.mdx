@@ -1,14 +1,14 @@
 # Usage
 
-You can use cacheHandler by specifying the path to it in the application configuration:
+You can use `cacheHandler` by specifying the path to it in the application configuration:
 
 ```js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     cacheMaxMemorySize: 0,
-    cacheHandler: require.resolve('nimpl/cache-in-memory'),
+    cacheHandler: require.resolve('@nimpl/cache-in-memory'),
 };
 ```
 
-However, it is recommended to use it together with [nimpl/cache-adapter](https://github.com/vordgi/nimpl-cache/tree/main/packages/nimpl-cache-adapter). 
-The package will allow you to expand the capabilities of cacheHandler and also reuse the cache between different application instances.
+However, it is recommended to use it together with [@nimpl/cache-adapter](https://nimpl.tech/cache-adapter). 
+The package will allow you to expand the capabilities of `cacheHandler` and also reuse the cache between different application instances.
