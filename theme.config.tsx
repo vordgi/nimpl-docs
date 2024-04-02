@@ -32,6 +32,10 @@ const config: DocsThemeConfig = {
         <>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <meta property="og:description" content="next-impl docs" />
+            <meta
+                property="og:image"
+                content="https://nimpl.tech/preview.png"
+            />
         </>
     )
     // ... other theme options
