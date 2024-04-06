@@ -1,0 +1,37 @@
+.nimpl-card {
+    --first-color: rgb(var(--color-neutral-100));
+    --second-color: rgb(var(--color-neutral-200));
+
+    &:hover{
+        --first-color: #D20062;
+        --second-color: #5356FF;
+    }
+
+    &::after {
+        content: "";
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        display: block;
+        background: linear-gradient(45deg, var(--first-color), var(--second-color));
+        background-size: 200% 200%;
+        position: absolute;
+        left: -2px;
+        top: -2px;
+        z-index: -1;
+        border-radius: 0.85rem;
+        animation: border-anim 5s infinite;
+        transition: background 1s;
+    }
+}
+
+@keyframes border-anim {
+    0% {
+        background-position: 0%;
+    }
+    50% {
+        background-position: 100%;
+    }
+    100% {
+        background-position: 0%;
+    }
+}

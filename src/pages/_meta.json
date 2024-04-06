@@ -7,8 +7,8 @@
       "layout": "raw"
     }
   },
-  "implementations": {
-    "title": "Implementations",
+  "ui/ux": {
+    "title": "UI/UX",
     "type": "menu",
     "items": {
       "getters": {
@@ -18,11 +18,13 @@
       "i18n": {
         "title": "i18n",
         "href": "/i18n"
-      },
-      "ab-tests": {
-        "title": "ab-tests",
-        "href": "/ab-tests"
-      },
+      }
+    }
+  },
+  "configuration": {
+    "title": "Configuration",
+    "type": "menu",
+    "items": {
       "classnames-minifier": {
         "title": "classnames-minifier",
         "href": "/classnames-minifier"
@@ -31,6 +33,16 @@
         "title": "config",
         "href": "/config"
       },
+      "ab-tests": {
+        "title": "ab-tests",
+        "href": "/ab-tests"
+      }
+    }
+  },
+  "cache": {
+    "title": "Cache",
+    "type": "menu",
+    "items": {
       "cache-adapter": {
         "title": "cache-adapter",
         "href": "/cache-adapter"
