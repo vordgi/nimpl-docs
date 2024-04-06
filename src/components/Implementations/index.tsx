@@ -8,13 +8,17 @@ const Implementations = () => (
             <p className="font-semibold text-2xl">@nimpl/i18n</p>
             <p className="text-xl mt-4">Internationalization library for React.js with an enabled server component</p>
         </a>
-        <a href="/config" className="block bg-neutral-100 rounded-xl p-8 border-2 border-transparent hover:border-neutral-300">
-            <p className="font-semibold text-2xl">@nimpl/config</p>
-            <p className="text-xl mt-4">Convenient management of application configuration in different environments</p>
+        <a href="/ab-tests" className="block bg-neutral-100 rounded-xl p-8 border-2 border-transparent hover:border-neutral-300">
+            <p className="font-semibold text-2xl">@nimpl/ab-tests</p>
+            <p className="text-xl mt-4">A package for conducting A/B tests on a website using middleware</p>
         </a>
         <a href="/classnames-minifier" className="block bg-neutral-100 rounded-xl p-8 border-2 border-transparent hover:border-neutral-300">
             <p className="font-semibold text-2xl">@nimpl/classnames-minifier</p>
             <p className="text-xl mt-4">Configuring style (css/scss/sass) modules to generate compressed classes</p>
+        </a>
+        <a href="/config" className="block bg-neutral-100 rounded-xl p-8 border-2 border-transparent hover:border-neutral-300">
+            <p className="font-semibold text-2xl">@nimpl/config</p>
+            <p className="text-xl mt-4">Convenient management of application configuration in different environments</p>
         </a>
         <a href="/cache-adapter" className="block bg-neutral-100 rounded-xl p-8 border-2 border-transparent hover:border-neutral-300">
             <p className="font-semibold text-2xl">@nimpl/cache-adapter</p>
