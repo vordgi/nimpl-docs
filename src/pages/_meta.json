@@ -19,13 +19,17 @@
         "title": "i18n",
         "href": "/i18n"
       },
+      "ab-tests": {
+        "title": "ab-tests",
+        "href": "/ab-tests"
+      },
+      "classnames-minifier": {
+        "title": "classnames-minifier",
+        "href": "/classnames-minifier"
+      },
       "config": {
         "title": "config",
         "href": "/config"
-      },
-      "cn-minifier": {
-        "title": "cn-minifier",
-        "href": "/cn-minifier"
       },
       "cache-adapter": {
         "title": "cache-adapter",
@@ -39,6 +43,7 @@
   },
   "getters": "getters",
   "i18n": "i18n",
+  "ab-tests": "ab-tests",
   "classnames-minifier": "classnames-minifier",
   "config": "config",
   "cache-adapter": "cache-adapter",

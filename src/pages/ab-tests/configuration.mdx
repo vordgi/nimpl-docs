@@ -1,0 +1,119 @@
+# Configuration
+
+To start A/B testing, you need to create middleware by calling the createMiddleware function.
+
+The function needs to be passed a list of tests (`tests`) and the save time of the user's results (`cookieLifeTime`, *in seconds*):
+
+```ts filename="middleware.ts"
+import { type Test } from '@nimpl/ab-tests/dist/lib/types/tests';
+import { createMiddleware } from '@nimpl/ab-tests';
+
+const tests: Test[] = [
+  {
+    id: 'some-id',
+    source: '/',
+    variants: [
+      {
+        weight: 0.5,
+        destination: '/'
+      },
+      {
+        weight: 0.5,
+        destination: '/page-2'
+      }
+    ],
+  }
+]
+
+export const middleware = createMiddleware({ tests, cookieLifeTime: 72400 });
+```
+
+## How does this work
+
+1. The middleware will find a suitable test for which the request will match the given instructions.
+
+1. If the test is not found, a `nimpl_ab` cookie will be recorded for the current page. This is necessary to avoid repeated checks.
+Otherwise, there is a risk that the document will not participate in the test, but the logic for the document will participate.
+
+1. If the test is found, a cookie will be added: `nimpl_ab`, and also, if `cookieLifeTime` is specified - `nimpl_ab_tmp`.
+`nimpl_ab` will be saved for the duration of the session, `nimpl_ab_tmp` - for the time specified through `cookieLifeTime`.
+
+1. Upon repeated requests, it will be checked whether the user still matches the test that was previously passed.
+If yes - the user will see the previously dropped version, otherwise - will try to participate in other tests.
+
+**Important**
+
+If `cookieLifeTime` is set - the user will not end participation in the A/B test after the specified time.
+He will complete participation at the end of the specified time and at the end of the session.
+
+*A session may not end even after closing the browser and rebooting the system, depending on the browser and its settings.*
+
+## Test description
+
+Each test is described by the following keys:
+
+`id` - identifier of the current test, can be set to anything;
+
+`source` - the path the test will follow;
+
+`has` - array of rules that should be fulfilled for the user's request (*more about [rule description](#rule-description)*);
+
+`missing` - array of rules that *should not* be fulfilled for the user's request (*more about [rule description](#rule-description)*);
+
+`variants` - array of possible variants of the current test (*more about [variants](#variant)*).
+
+## Rule description
+
+The user's request data are checked in accordance with the rules. The principles of the rules are similar to the rules of next.js.
+
+Each rule may contain the following keys:
+
+`type` - the type of rule. Options: `header`, `cookie`, `host`, `query`;
+
+`key` - the key from the selected type to match against;
+
+`value` - the value that will be checked for the given key. If not specified - any value will be correct;
+
+`ignoreOnNextRequests` - ignore the rule when the test participant repeats the visit to the test page.
+
+## Variant
+
+The test can have as many options as you like. The main condition is that the total probability of the options falling out should not exceed 1.
+   
+Each option is an object with keys:
+
+`destination` - the path where the option is located;
+
+`weight` - probability of the option being given (*from 0 to 1*).
+
+## Dynamic Data
+   
+Rules, just like in next.js, support dynamic data.
+   
+But, unlike next.js, this only works through regular expression variables (*f.e.* `(?<param>.*)`).
+
+Dynamic data can be obtained from `source` or from `value` of the rules. Then they can be embedded in destination tests:
+
+```ts
+{
+  id: 'some-id',
+  source: '/en-(?<country>de|fr|it)',
+  has: [
+    {
+      type: 'query',
+      key: 'ref',
+      value: 'utm_(?<ref>moogle|daybook)',
+    }
+  ],
+  variants: [
+    {
+      weight: 0.5,
+      destination: '/en-:country/:ref'
+    },
+    {
+      weight: 0.5,
+      destination: '/en-:country/:ref/new'
+    }
+  ],
+}
+```
