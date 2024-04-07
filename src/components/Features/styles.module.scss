@@ -1,0 +1,248 @@
+.nimpl-feature-1 {
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        background-color: #D20062;
+        box-shadow: 0 0 47px 54px #D20062;
+        opacity: .1;
+    }
+}
+
+.nimpl-dot-1 {
+    animation: dot-1 linear 1s infinite;
+    z-index: 1;
+}
+
+@keyframes dot-1 {
+    0% {
+        left: 4px;
+        top: 4px;
+    }
+    40% {
+        left: 25%;
+        transform: translate(2px, 2px);
+    }
+    90% {
+        left: 25%;
+    }
+    100% {
+        left: 25%;
+        opacity: 0;
+    }
+}
+
+.nimpl-dot-2 {
+    animation: dot-2 linear 1.5s .3s infinite;
+    z-index: 1;
+}
+
+@keyframes dot-2 {
+    0% {
+        left: 4px;
+        top: 4px;
+    }
+    40% {
+        left: 50%;
+        transform: translate(-6px, 2px);
+    }
+    90% {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    100% {
+        left: 50%;
+        opacity: 0;
+    }
+}
+
+.nimpl-dot-3 {
+    animation: dot-3 linear 2s .5s infinite;
+    z-index: 1;
+}
+
+@keyframes dot-3 {
+    0% {
+        left: 4px;
+        top: 4px;
+    }
+    40% {
+        left: 75%;
+        transform: translate(-4px, -2px);
+    }
+    90% {
+        left: 75%;
+        transform: translateX(-8px);
+    }
+    100% {
+        left: 75%;
+        opacity: 0;
+    }
+}
+
+.nimpl-dot-4 {
+    animation: dot-4 linear 2.5s .7s infinite;
+    z-index: 1;
+}
+
+@keyframes dot-4 {
+    0% {
+        left: 4px;
+        top: 4px;
+    }
+    40% {
+        left: 100%;
+        transform: translate(-10px, 2px);
+    }
+    90% {
+        left: 100%;
+        transform: translateX(-12px);
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+.nimpl-feature-2 {
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 10%;
+        left: 10%;
+        transform: translate(-50%);
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        background-color: #D20062;
+        box-shadow: 0 0 47px 54px #D20062;
+        opacity: .1;
+    }
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 10%;
+        right: 10%;
+        transform: translate(50%);
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        background-color: #5356FF;
+        box-shadow: 0 0 47px 54px #5356FF;
+        opacity: .1;
+    }
+}
+
+.nimpl-line {
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    top: 5px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #D20062 20%, #5356FF 80%);
+    background-size: 200% 200%;
+    animation: line-anim 2s infinite;
+}
+
+@keyframes line-anim {
+    0% {
+        background-position: 20%;
+    }
+    50% {
+        background-position: 80%;
+    }
+    100% {
+        background-position: 20%;
+    }
+}
+
+.nimpl-feature-3 {
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        transform: translate(-50%);
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        background-color: #D20062;
+        box-shadow: 0 0 47px 54px #D20062;
+        opacity: .1;
+    }
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 20%;
+        right: 20%;
+        transform: translate(50%);
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        background-color: #5356FF;
+        box-shadow: 0 0 47px 54px #5356FF;
+        opacity: .1;
+    }
+}
+
+.nimpl-ad-line {
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    top: 5px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, rgb(var(--color-neutral-300)), #D20062);
+    background-size: 200% 200%;
+    animation: ad-line-anim 2s linear infinite;
+}
+
+@keyframes ad-line-anim {
+    0% {
+        background-position: 200%;
+    }
+    80% {
+        background-position: 0%;
+    }
+}
+
+.nimpl-ad-dot-1 {
+    bottom: -80px;
+    animation: ad-dot 2s 1s infinite;
+}
+
+.nimpl-ad-dot-2 {
+    bottom: -80px;
+    animation: ad-dot 2s 1.25s infinite;
+}
+
+.nimpl-ad-dot-3 {
+    bottom: -80px;
+    animation: ad-dot 2s 1.5s infinite;
+}
+
+@keyframes ad-dot {
+    0% {
+        bottom: -80px;
+    }
+    60% {
+        bottom: 0;
+    }
+    80% {
+        bottom: 0;
+        opacity: 1;
+    }
+    100% {
+        bottom: 0;
+        opacity: 0;
+    }
+}

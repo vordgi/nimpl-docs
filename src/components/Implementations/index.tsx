@@ -2,7 +2,7 @@ import styles from './styles.module.scss';
 
 const Implementations = () => (
     <>
-        <section>
+        <div>
             <h2 className="text-3xl mb-6">UI/UX Implementations</h2>
             <div className="grid sm:max-xl:grid-cols-2 xl:grid-cols-3 gap-8 items-start">
                 <a href="/getters" className={`${styles["nimpl-card"]} block relative bg-neutral-100 rounded-xl p-8`}>
@@ -14,8 +14,8 @@ const Implementations = () => (
                     <p className="text-xl mt-4">Internationalization library for React.js with an enabled server component</p>
                 </a>
             </div>
-        </section>
-        <section className="mt-10">
+        </div>
+        <div className="mt-10">
             <h2 className="text-3xl mb-6">Configuration Implementations</h2>
             <div className="grid sm:max-xl:grid-cols-2 xl:grid-cols-3 gap-8 items-start">
                 <a href="/classnames-minifier" className={`${styles["nimpl-card"]} block relative bg-neutral-100 rounded-xl p-8`}>
@@ -31,8 +31,8 @@ const Implementations = () => (
                     <p className="text-xl mt-4">A package for conducting A/B tests on a website using middleware</p>
                 </a>
             </div>
-        </section>
-        <section className="mt-10">
+        </div>
+        <div className="mt-10">
             <h2 className="text-3xl mb-6">Cache Implementations</h2>
             <div className="grid sm:max-xl:grid-cols-2 xl:grid-cols-3 gap-8 items-start">
                 <a href="/cache-adapter" className={`${styles["nimpl-card"]} block relative bg-neutral-100 rounded-xl p-8`}>
@@ -44,7 +44,7 @@ const Implementations = () => (
                     <p className="text-xl mt-4">Base cacheHandler for next.js, which cache data in-memory</p>
                 </a>
             </div>
-        </section>
+        </div>
     </>
 )
 
