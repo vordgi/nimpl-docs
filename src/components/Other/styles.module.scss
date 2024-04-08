@@ -1,0 +1,14 @@
+.bg-anim {
+    background: linear-gradient(-45deg, #D20062, #5356FF);
+    background-size: 150% 150%;
+    animation: border-anim 3s infinite;
+}
+
+@keyframes border-anim {
+    0% {
+        background-position: 300%;
+    }
+    100% {
+        background-position: 0%;
+    }
+}
