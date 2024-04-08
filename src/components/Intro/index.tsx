@@ -6,8 +6,10 @@ const Intro = () => {
     const circleRef = useRef<SVGCircleElement>(null);
 
     const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        circleRef.current!.setAttribute('cx', ((e.clientX - e.currentTarget.offsetLeft) / e.currentTarget.clientWidth * 961).toString());
-        circleRef.current!.setAttribute('cy', ((e.clientY - e.currentTarget.offsetTop) / e.currentTarget.clientHeight * 355).toString());
+        const ratio = 961 / e.currentTarget.clientWidth;
+        const maskOffsetTop = (e.currentTarget.clientHeight - (355 / ratio)) / 2;
+        circleRef.current!.setAttribute('cx', ((e.clientX - e.currentTarget.offsetLeft) * ratio).toString());
+        circleRef.current!.setAttribute('cy', ((e.clientY - e.currentTarget.offsetTop + window.scrollY - maskOffsetTop) * ratio).toString());
     }
 
     const onMouseLeave = () => {
