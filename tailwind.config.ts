@@ -24,6 +24,7 @@ const config: Config = {
         'neutral-850': "rgb(var(--color-neutral-850) / <alpha-value>)",
         'neutral-900': "rgb(var(--color-neutral-900) / <alpha-value>)",
         'neutral-950': "rgb(var(--color-neutral-950) / <alpha-value>)",
+        'base-0': "rgb(var(--color-base-0) / <alpha-value>)",
       },
     },
     container: {

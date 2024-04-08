@@ -1,6 +1,7 @@
-import Implementations from '@/components/Implementations';
-import Features from '@/components/Features';
 import Intro from '@/components/Intro';
+import Features from '@/components/Features';
+import Implementations from '@/components/Implementations';
+import Other from '@/components/Other';
 
 <Intro />
 <section className="pt-32 pb-32">
@@ -13,18 +14,4 @@ import Intro from '@/components/Intro';
         <Implementations />
     </div>
 </section>
-<section className="pt-32 pb-32 mb-32">
-    <div className="container">
-        <div className="lg:flex border-t-2 border-b-2 border-neutral-100 border-dashed">
-            <p className="text-4xl lg:w-60 font-medium pt-8 pr-8 pb-8 border-r-2 border-neutral-100 border-dashed">Motivation</p>
-            <div className="text-2xl flex-1 lg:pt-8 pb-8 pl-8">
-                <p>Next.js implements a lot of functionality from release to release. Many innovations are extremely useful, but they have critical differences. These changes can hinder the transition to new versions and new approaches.</p>
-                <p>At the same time, much desired functionality is still not implemented. This family of packages solves common next.js tasks, making it not only faster but also easier.</p>
-            </div>
-        </div>
-        <div className="lg:flex border-b-2 border-neutral-100 border-dashed">
-            <p className="text-4xl lg:w-60 font-medium pt-8 pr-8 pb-8 border-r-2 border-neutral-100 border-dashed">Plans</p>
-            <p className="text-2xl flex-1 lg:pt-8 pb-8 pl-8">Plans include creating several more packages and continuing to improve existing ones. If you have ideas, difficulties, wishes - do not hesitate to create issues. Community is what makes solutions better.</p>
-        </div>
-    </div>
-</section>
+<Other />
