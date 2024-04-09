@@ -1,7 +1,8 @@
-{
+const config = {
     "index": "Introduction",
     "usage": "Usage",
-    "structure": "Structure",
     "configuration": "Configuration",
-    "app-configuration": "App Configuration"
+    "app-organization": "App Organization"
 }
+
+export default config;
