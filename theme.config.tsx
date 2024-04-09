@@ -1,5 +1,4 @@
-import { type DocsThemeConfig } from 'nextra-theme-docs'
-import { useConfig } from 'nextra-theme-docs'
+import { useConfig, type DocsThemeConfig } from 'nextra-theme-docs'
 
 const config: DocsThemeConfig = {
     logo: (
@@ -20,25 +19,30 @@ const config: DocsThemeConfig = {
         link: 'https://github.com/vordgi'
     },
     footer: {
-        text: '© 2024 nimpl'
-    },
-    docsRepositoryBase: 'https://github.com/vordgi/nimpl-app/tree/main',
-    useNextSeoProps() {
-        return {
-            titleTemplate: '%s – next-impl'
+        content: function useText() {
+            return (
+                '© 2024 nimpl'
+            )
         }
     },
-    head: (
-        <>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <meta property="og:description" content="next-impl docs" />
-            <meta
-                property="og:image"
-                content="https://nimpl.tech/preview.png"
-            />
-        </>
-    )
-    // ... other theme options
+    docsRepositoryBase: 'https://github.com/vordgi/nimpl-docs/tree/main',
+    head: function useHead() {
+        const config = useConfig<{ description?: string; image?: string }>();
+        const title = `${config.title} | nimpl`;
+        return (
+            <>
+                <title>{title}</title>
+                <meta property="og:title" content={title} />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta name="description" content="nimpl docs" />
+                <meta property="og:description" content="nimpl docs" />
+                <meta
+                    property="og:image"
+                    content="https://nimpl.tech/preview.png"
+                />
+            </>
+        )
+    }
 }
 
 export default config;

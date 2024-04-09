@@ -1,4 +1,4 @@
-{
+const config = {
   "index": {
     "type": "page",
     "title": "Next-impl solutions",
@@ -53,6 +53,9 @@
       }
     }
   },
+  "---": {
+    "type": "separator"
+  },
   "getters": "getters",
   "i18n": "i18n",
   "ab-tests": "ab-tests",
@@ -69,3 +72,5 @@
     }
   }
 }
+
+export default config;
