@@ -2,7 +2,19 @@
 
 *Uses next.js functionality*
 
-Retrieves page config for the currently rendered page
+Gets the next.js page configuration for the currently rendered page in React Server Component.
+
+## Supported configuration data
+
+`basePath` - project base path (sub-path of a domain). Read more in [next.js docs](https://nextjs.org/docs/app/api-reference/next-config-js/basePath)
+
+`dynamic` - next.js dynamic behavior option. Read more in [next.js docs](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamic)
+
+`pagePath` - path to the page in the folder structure (f.e. `/[locale]/blog/[slug]`)
+
+`revalidate` - revalidation time for rendered page. Read more in [next.js docs](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate)
+
+## How to
 
 ```tsx
 import { getPageConfig } from '@nimpl/getters/get-page-config'

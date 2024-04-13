@@ -2,11 +2,11 @@
 
 *Uses next.js functionality*
 
-Retrieves parameters for the current page.
+Retrieves dynamic parameters for the current page. Works the same as [useParams](https://nextjs.org/docs/app/api-reference/functions/use-params), but in a React server component.
 
-This is a more complex function that essentially (not quite) gathers parameters from the file path of the current page and the path of the page. Next.js does not have ready-made functionality for this. Currently, Next.js determines the parameters for segments during the tree building process from top to bottom.
+For example, for a page at the directory `/[locale]/blog/[slug]` and pathname `/en-de/blog/example` - the getter will return `{ locale: 'en-de', slug: 'example' }`
 
-On the one hand, I like the idea of adding this capability to the library, I think it can be useful, but still, it will be fundamentally different logic compared to adding parameters to page props and layers, so the solution is not straightforward and may be completely redesigned.
+## How to
 
 ```tsx
 import { getParams } from '@nimpl/getters/get-params'
