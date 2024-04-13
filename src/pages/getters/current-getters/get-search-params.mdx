@@ -1,10 +1,14 @@
 # get-search-params
 
+Retrieves search params for the currently rendered page in React Server Component. Works the same as [useSearchParams](https://nextjs.org/docs/app/api-reference/functions/use-search-params), but in a React server component.
+
 Getter was deprecated in version 1.2.0 because in some cases next.js can strip query parameters from the stored URL.
 
 ## Possible implementation
 
-Add URL header in middleware
+This functionality makes no sense without dynamic mode, so you can use headers to implement it
+
+1\. Add URL header in middleware
 
 ```ts filename="middleware.ts"
 import { NextResponse } from 'next/server';
@@ -17,7 +21,7 @@ export function middleware(request: Request) {
 }
 ```
 
-Use new header
+2\. Use new header
 
 ```ts
 import { headers } from 'next/headers';
@@ -34,13 +38,6 @@ export default function Component() {
 ```
 
 ## Previous solution
-
-**This implementation will be completely removed from the package**
-
-
-*Uses next.js functionality*
-
-Retrieves search-params for the current page request
 
 ```tsx
 import { getSearchParams } from '@nimpl/getters/get-search-params'
