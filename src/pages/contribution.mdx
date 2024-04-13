@@ -1,0 +1,71 @@
+# Contribution
+
+Hello! Below is a guide on how you can make changes to the nimpl family packages. If you have any questions left - feel free to raise issues and discussions on them.
+
+Your support is not only PR, but also tasks, ideas, participation in discussions, repros, and, of course, stars.
+
+**Thank you** very much for deciding to participate in the development of the project.
+
+## Preparation
+
+Before creating a task or PR, make sure that the issue or idea is relevant in the latest version of the package.
+
+Then check the task list, perhaps your problem or idea is already known and work is being carried out on it.
+
+Please start working by creating a task. I try to promptly respond to all emerging ideas and tasks. This will help save your time first and foremost.
+
+Also, before starting work, you can create a discussion in the package you are interested in. I will also try to answer all questions in them.
+
+You can read about how to interact with Github for contributing to the package on the [GitHub Open Source Guide](https://opensource.guide/how-to-contribute/) page.
+
+## Release cycle
+
+Task development begins with the canary branch. It is from it that the branch is created for the task that you want to perform.
+
+After completing the task, a PR is created from the branch you created for the task to the canary branch.
+
+Then a canary release of the package will be issued.
+
+When the changes are ready for a stable release, a new branch will be created from the canary branch for the stable version release.
+
+## Package Development
+
+All family packages use pnpm as the package manager, ts as the development language, eslint and prettier as code formatting and quality checking tools;
+
+After cloning the package, you need to configure pnpm:
+
+```bash
+corepack enable
+corepack prepare pnpm@latest --activate
+```
+
+And install dependencies:
+
+```bash
+pnpm install
+```
+
+After installing the packages, husky will be set up - it will check the code rules during commits.
+
+## Test changes
+
+After refining the packages, I recommend immediately correcting the formatting:
+
+```bash
+pnpm run lint --fix
+```
+
+Also, some packages have tests. The work with tests will be further developed and described later.
+
+To build TS you can go to the package directory and call `pnpm build`.
+
+Also, you can build TS from the root directory by calling `pnpm nimpl:NAME build`, where NAME is the key of the package (f.e. to build the `@nimpl/i18n` package the command will be `pnpm nimpl:i18n build`)
+
+Now you can install the modified package into your project:
+
+```bash
+pnpm install ../path/to/nimpl/package
+```
+
+Package managers also support the "link" functionality for linking a package ([npm](https://docs.npmjs.com/cli/v10/commands/npm-link), [pnpm](https://pnpm.io/cli/link), [yarn](https://classic.yarnpkg.com/lang/en/docs/cli/link/)).
+The advantage of this method is that when changes are made to the package, you won't need to reinstall it, but simply rebuild it.

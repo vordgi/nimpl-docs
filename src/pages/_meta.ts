@@ -63,6 +63,7 @@ const config = {
   "config": "config",
   "cache-adapter": "cache-adapter",
   "cache-in-memory": "cache-in-memory",
+  "contribution": "Contribution",
   "404": {
     "type": "page",
     "display": "hidden",
