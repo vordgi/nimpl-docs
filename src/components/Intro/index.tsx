@@ -16,7 +16,7 @@ const Intro = () => {
     const onMouseLeave = () => {
         circleRef.current!.classList.add('opacity-0');
     }
-    
+
     const onMouseEnter = () => {
         circleRef.current!.classList.remove('opacity-0');
     }
