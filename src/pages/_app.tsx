@@ -1,4 +1,11 @@
 import './globals.css';
+import localFont from 'next/font/local';
+
+const geist = localFont({
+    src: '../assets/GeistVF.woff2',
+    fallback: ['Inter', 'Segoe UI', 'ui-sans-serif', 'Roboto', 'Noto Sans', 'sans-serif'],
+    variable: '--font-geist'
+});
 
 type AppProps = {
     Component: React.FC;
@@ -7,7 +14,7 @@ type AppProps = {
 
 export default function App({ Component, pageProps }: AppProps) {
     return (
-        <main className="text-neutral-900">
+        <main className={`text-neutral-900 ${geist.variable}`}>
             <Component {...pageProps} />
         </main>
     )

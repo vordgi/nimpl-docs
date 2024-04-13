@@ -26,6 +26,9 @@ const config: Config = {
         'neutral-950': "rgb(var(--color-neutral-950) / <alpha-value>)",
         'base-0': "rgb(var(--color-base-0) / <alpha-value>)",
       },
+      fontFamily: {
+        geist: ['var(--font-geist)'],
+      },
     },
     container: {
       center: true,

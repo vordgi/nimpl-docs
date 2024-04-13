@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { useRef } from "react";
 
 const Intro = () => {
@@ -23,14 +24,19 @@ const Intro = () => {
     return (
         <section>
             <div
-                className="relative pt-40 pb-40 md:pt-60 md:pb-60 max-w-screen-lg mx-auto px-4"
+                className="relative pt-40 pb-40 md:pt-60 md:pb-60 max-w-screen-xl mx-auto px-4"
                 onMouseMove={onMouseMove}
                 onMouseLeave={onMouseLeave}
                 onMouseEnter={onMouseEnter}
             >
-                <h1 className="text-center text-4xl md:text-6xl">Implementing solutions for next.js</h1>
-                <h2 className="text-center text-xl md:text-3xl mt-4 md:mt-8">to make the web not only faster, but also easier</h2>
-                <svg viewBox="0 0 961 355" className="absolute bg-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 text-neutral-150 opacity-50">
+                <h1 className="text-center text-4xl md:text-6xl font-geist font-extrabold">Solutions for your Next.js project</h1>
+                <h2 className="text-center text-xl md:text-2xl mt-8 md:mt-8 mx-auto text-neutral-800 font-light">cover the flaws of next.js and supplement it with much-desired functionality</h2>
+                <div className="flex justify-center mt-16">
+                    <Link href="/#implementations" className="relative block p-0.5 text-center rounded-md bg-[#5356FF] hover:opacity-80 text-lg font-medium leading-none">
+                        <span className="flex items-center w-full h-full bg-neutral-50 px-8 py-3 rounded font-geist">Get Started</span>
+                    </Link>
+                </div>
+                <svg viewBox="0 0 961 355" className="absolute bg-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5/6 h-full -z-10 text-neutral-150 opacity-50">
                     <mask id="logo-mask" strokeWidth={2} stroke="white">
                         <path d="M303 73C303 66.3726 308.373 61 315 61H339C345.627 61 351 66.3726 351 73V340C351 346.627 345.627 352 339 352H315C308.373 352 303 346.627 303 340V73Z" />
                         <path d="M383 220C383 213.373 388.373 208 395 208H419C425.627 208 431 213.373 431 220V340C431 346.627 425.627 352 419 352H395C388.373 352 383 346.627 383 340V220Z" />
