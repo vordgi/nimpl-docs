@@ -31,10 +31,13 @@ const Intro = () => {
             >
                 <h1 className="text-center text-4xl md:text-6xl font-geist font-extrabold">Solutions for your Next.js project</h1>
                 <h2 className="text-center text-xl md:text-2xl mt-8 md:mt-8 mx-auto text-neutral-800 font-light">cover the flaws of next.js and supplement it with much-desired functionality</h2>
-                <div className="flex justify-center mt-16">
-                    <Link href="/#implementations" className="relative block p-0.5 text-center rounded-md bg-[#5356FF] hover:opacity-80 text-lg font-medium leading-none">
-                        <span className="flex items-center w-full h-full bg-neutral-50 px-8 py-3 rounded font-geist">Get Started</span>
-                    </Link>
+                <div className="grid grid-flow-col gap-4 justify-center mt-16">
+                        <Link href="/#implementations" className="relative block p-0.5 text-center rounded-md bg-[#5356FF] hover:opacity-80 text-lg font-medium leading-none">
+                            <span className="flex items-center w-full h-full bg-neutral-50 px-8 py-3 rounded font-geist">Get Started</span>
+                        </Link>
+                        <Link href="/#about" className="relative block p-0.5 text-center rounded-md bg-neutral-700 hover:opacity-80 text-lg font-medium leading-none">
+                            <span className="flex items-center w-full h-full bg-neutral-50 px-8 py-3 rounded font-geist">About Nimpl</span>
+                        </Link>
                 </div>
                 <svg viewBox="0 0 961 355" className="absolute bg-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5/6 h-full -z-10 text-neutral-150 opacity-50">
                     <mask id="logo-mask" strokeWidth={2} stroke="white">
