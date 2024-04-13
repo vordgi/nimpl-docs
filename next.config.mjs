@@ -5,6 +5,7 @@ import nextra from 'nextra';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
+    transpilePackages: ['geist/font/sans', 'next/font'],
 };
 
 const withNextra = nextra({
