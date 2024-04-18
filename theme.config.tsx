@@ -28,11 +28,10 @@ const config: DocsThemeConfig = {
     docsRepositoryBase: 'https://github.com/vordgi/nimpl-docs/tree/main',
     head: function useHead() {
         const config = useConfig<{ description?: string; image?: string }>();
-        const title = `${config.title} | nimpl`;
         return (
             <>
-                <title>{title}</title>
-                <meta property="og:title" content={title} />
+                <title>{config.title}</title>
+                <meta property="og:title" content={config.title} />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <meta name="description" content="nimpl docs" />
                 <meta property="og:description" content="nimpl docs" />
