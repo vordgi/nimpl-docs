@@ -23,6 +23,14 @@ npm i @nimpl/classnames-minifier
 
 *Compressing classes* can reduce the size of the generated html and css by up to *20%*, which will have a positive effect on page rendering and metrics (primarily [FCP](https://web.dev/first-contentful-paint/))
 
+## Working with cache
+
+Next.js has a very complex caching system. It caches processed files and doesn't rebuild them during next builds, but takes them from the cache.
+
+However, when the package config changes - all these files need to be rebuilt. Without this, there will be critically many artifacts at the intersection of names or unexpected use of previous names.
+
+For this reason, with critical changes in the package configuration, the entire application data will be deleted.
+
 ## Additional
 
 Please consider giving a star if you like it, it shows that the package is useful and helps continue work on this and other packages.
