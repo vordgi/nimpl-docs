@@ -44,7 +44,11 @@ First, create an API route.
 
 ```jsx filename="app/api/config/route.tsx"
 export { runtimeConfigApi as GET } from '@nimpl/config/runtime-config-api';
+
+export const dynamic = 'force-dynamic';
 ```
+
+*It is important to specify `force-dynamic`, otherwise next.js will compile this API route as static and it will not provide actual data for the environment*
 
 Wrap the application with the Provider.
 
