@@ -28,6 +28,8 @@ import { buildConfig } from '@nimpl/config/build-config';
 const config = buildConfig;
 ```
 
+Before using this config, [additional setup](https://nimpl.tech/config/app-configuration#build) is required
+
 ## postbuild
 
 During the build process, configs are generated for each possible environment (based on the environment conditions at build time). Then, at runtime, the appropriate version is selected.
@@ -39,6 +41,8 @@ import { postbuildConfig } from '@nimpl/config/postbuild-config';
 // ...
 const config = postbuildConfig;
 ```
+
+Before using this config, [additional setup](https://nimpl.tech/config/app-configuration#postbuild) is required
 
 ## runtime
 
@@ -56,3 +60,5 @@ const config = useRuntimeConfig();
 if (!config) return <p>Loading...</p>
 // ...
 ```
+
+Before using this config, [additional setup](https://nimpl.tech/config/app-configuration#runtime) is required

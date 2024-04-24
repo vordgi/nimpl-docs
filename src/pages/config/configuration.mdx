@@ -4,7 +4,22 @@ title: 'Configuration | @nimpl/config'
 
 # Configuration
 
-## Environment-dependent config
+## Environment-dependent specific config
+
+The default Environment-dependent config is the config for the current NODE_ENV. If you want to use a config for specific env, pass it to `nimplConfig`
+
+```js filename="next.config.js"
+const { default: nimplConfig } = require('@nimpl/config/with-nimpl-config');
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // ...
+};
+
+module.exports = nimplConfig({ envs: ['development', 'staging', 'production'], targetEnv: 'development' })(nextConfig);
+```
+
+## Environment-dependent config key
 
 The default Environment-dependent config is the config with the current NODE_ENV. If you want to use a different key, pass it to `nimplConfig`
 
@@ -16,7 +31,7 @@ const nextConfig = {
   // ...
 };
 
-module.exports = nimplConfig({ envs: ['development', 'staging', 'production'], targetEnv: process.env.MY_CUSTOM_ENV })(nextConfig);
+module.exports = nimplConfig({ envs: ['development', 'staging', 'production'], targetEnvKey: 'MY_CUSTOM_ENV' })(nextConfig);
 ```
 
 ## Custom config folder
@@ -37,3 +52,29 @@ module.exports = nimplConfig({ folder: 'custom-config-folder' })(nextConfig);
 When the application runs, the package will create a file with type declarations - `nimpl-config.d.ts`.
 
 After this, each config variant will be typed exactly in accordance with the default config.
+
+You can also create this file manually:
+
+```ts filename="nimpl-config.d.ts"
+// NOTE: This file should not be edited
+// see https://nimpl.tech/config/configuration#typescript for more information.
+
+declare module "@nimpl/config/use-runtime-config" {
+    declare const useRuntimeConfig: () => typeof import('./config/runtime/default');
+    export default useRuntimeConfig;
+}
+
+declare module "@nimpl/config/build-config" {
+    export declare const buildConfig: typeof import('./config/build/default');
+}
+
+declare module "@nimpl/config/postbuild-config" {
+    export declare const postbuildConfig: typeof import('./config/postbuild/default');
+}
+
+declare module "@nimpl/config/server-config" {
+    export declare const serverConfig: Promise<typeof import('./config/server/default')>;
+}
+```
+
+*If you're using a custom folder - update the paths to the configs*
