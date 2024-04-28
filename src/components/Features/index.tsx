@@ -21,7 +21,7 @@ const Features = () => (
             <div className="relative h-4 w-full">
                 <span className={`${styles['nimpl-line']}`} />
                 <span className="absolute block h-4 w-4 bg-[#D20062] rounded-2xl" />
-                <span className="absolute block h-4 w-4 bg-neutral-600 rounded-2xl left-1/2 -translate-x-1/2" />
+                <span className={`${styles['nimpl-lf-dot-2']} absolute block h-4 w-4 bg-neutral-600 rounded-2xl left-1/2 -translate-x-1/2`} />
                 <span className="absolute block h-4 w-4 bg-[#5356FF] rounded-2xl left-full -translate-x-full" />
             </div>
         </div>
