@@ -1,5 +1,6 @@
 import './globals.css';
 import localFont from 'next/font/local';
+import { Analytics } from '@vercel/analytics/react';
 
 const geist = localFont({
     src: '../assets/GeistVF.woff2',
@@ -16,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
     return (
         <main className={`text-neutral-900 ${geist.variable}`}>
             <Component {...pageProps} />
+            <Analytics />
         </main>
     )
 }
