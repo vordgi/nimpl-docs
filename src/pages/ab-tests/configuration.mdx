@@ -6,7 +6,7 @@ title: 'Configuration | @nimpl/ab-tests'
 
 To start A/B testing, you need to create middleware by calling the createMiddleware function.
 
-The function needs to be passed a list of tests (`tests`) and the save time of the user's results (`cookieLifeTime`, *in seconds*):
+The function needs to be passed a list of tests (`tests`) and the life time of the results cookie (`cookieLifeTime`, *in seconds*):
 
 ```ts filename="middleware.ts"
 import { type Test } from '@nimpl/ab-tests/dist/lib/types/tests';
@@ -36,19 +36,14 @@ export const middleware = createMiddleware({ tests, cookieLifeTime: 72400 });
 
 1. The middleware will find a suitable test for which the request will match the given instructions.
 
-1. If the test is not found, a `nimpl_ab` cookie will be recorded for the current page. This is necessary to avoid repeated checks.
-Otherwise, there is a risk that the document will not participate in the test, but the logic for the document will participate.
+1. If the test is found, a `nimpl_ab` cookie will be added with a session lifetime (*if `cookieLifeTime` is set - with a lifetime specified in this option*).
 
-1. If the test is found, a cookie will be added: `nimpl_ab`, and also, if `cookieLifeTime` is specified - `nimpl_ab_tmp`.
-`nimpl_ab` will be saved for the duration of the session, `nimpl_ab_tmp` - for the time specified through `cookieLifeTime`.
-
-1. Upon repeated requests, it will be checked whether the user still matches the test that was previously passed.
+1. Upon repeated requests, it will be checked whether the user still matches the test that was previously passed (*considering the `ignoreOnNextRequests` option*).
 If yes - the user will see the previously dropped version, otherwise - will try to participate in other tests.
 
 **Important**
 
-If `cookieLifeTime` is set - the user will not end participation in the A/B test after the specified time.
-He will complete participation at the end of the specified time and at the end of the session.
+If `cookieLifeTime` is not set - the user may not stop being a participant in the A/B test after closing the tab or browser.
 
 *A session may not end even after closing the browser and rebooting the system, depending on the browser and its settings.*
 
@@ -83,17 +78,21 @@ Each rule may contain the following keys:
 ## Variant
 
 The test can have as many options as you like. The main condition is that the total probability of the options falling out should not exceed 1.
-   
+
 Each option is an object with keys:
 
 `destination` - the path where the option is located;
 
-`weight` - probability of the option being given (*from 0 to 1*).
+`weight` - probability of the option being given (*from 0 to 1*);
+
+`type` - variant type - `rewrite` or `redirect`. Accordingly, when the option is triggered, either a rewrite will be performed or a redirect to the specified page will occur;
+
+`status` - response status when variant drops out.
 
 ## Dynamic Data
-   
+
 Rules, just like in next.js, support dynamic data.
-   
+
 But, unlike next.js, this only works through regular expression variables (*f.e.* `(?<param>.*)`).
 
 Dynamic data can be obtained from `source` or from `value` of the rules. Then they can be embedded in destination tests:
