@@ -1,0 +1,52 @@
+---
+title: 'useTranslation | @nimpl/i18n'
+---
+
+import Hint from '@/components/Hint'
+
+# useTranslation
+
+Hook for adding translations to client components.
+
+<Hint>
+To use i18n on the client side, you need to set up the [I18nTransmitter](/i18n/api/i18n-transmitter)
+</Hint>
+
+```tsx
+"use client";
+
+import useTranslation from '@nimpl/i18n/useTranslation';
+
+const ClientComponent: React.FC = () => {
+    const { t } = useTranslation();
+
+    return (
+        <div>
+            {/* Welcome to Next Translation */}
+            {t('header.nav.home')}
+        </div>
+    )
+}
+```
+
+<Hint>
+The client hook and component, unlike the server ones, do not support language customization. 
+This is because translations are determined by server parents, as a result, the language is set in them.
+</Hint>
+
+## Options
+
+You can pass `opts` as the second argument of `t`.
+
+Now you can pass a query there to inject variable strings inside translations.
+
+```tsx
+const Component: React.FC = () => {
+    return (
+        <div>
+            {/* Price starts from ${{price}} */}
+            {t('pricing.tariffs.solo', { query: { price: '16.90' } })}
+        </div>
+    )
+}
+```

@@ -1,0 +1,53 @@
+---
+title: 'I18nTransmitter | @nimpl/i18n'
+---
+
+import Hint from '@/components/Hint'
+
+# I18nTransmitter
+
+For client-side translations to work, translations are passed in parent server components.
+
+The `I18nTransmitter` is used for this. It takes an array of keys to namespaces or specific keys.
+
+<Hint>
+It is recommended to set it at the top level of the route.
+However, in some cases (*for example in conditions for different sections*) it may be useful to add a transmitter in another place.
+</Hint>
+
+```tsx
+import I18nTransmitter from '@nimpl/i18n/I18nTransmitter';
+import ClientComponent from './ClientComponent';
+
+const ServerComponent: React.FC = () => (
+    <I18nTransmitter terms={['header.nav']}>
+        <ClientComponent />
+    </I18nTransmitter>
+)
+```
+
+<Hint>
+Layout lives independently, so it needs to be wrapped in `I18nTransmitter` separately.
+</Hint>
+
+Also you can inject query to client terms on the server side. For example, when they depend on the server environment or when you get values from a database on the server.
+
+Just add an array value instead of a string in terms arr, where the second element will be the query object.
+
+```tsx
+import I18nTransmitter from '@nimpl/i18n/I18nTransmitter';
+import ClientComponent from './ClientComponent';
+
+const ServerComponent: React.FC = () => (
+    <I18nTransmitter terms={[['home.welcome', { stage: process.env.GITHUB_REF === 'main' ? 'production' : 'test' }]]}>
+        <ClientComponent />
+    </I18nTransmitter>
+)
+```
+
+You can also specify the desired language and translations will be added specifically for it:
+```tsx
+<I18nTransmitter terms={[['home.welcome']]} language="fr">
+    <ClientComponent />
+</I18nTransmitter>
+```

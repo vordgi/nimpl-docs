@@ -1,0 +1,29 @@
+---
+title: 'ServerTranslation | @nimpl/i18n'
+---
+
+# ServerTranslation
+
+A component for adding complex translations in React Server Components. Unlike getter, it supports adding components inside translations.
+
+```tsx
+import ServerTranslation from '@nimpl/i18n/ServerTranslation';
+
+const ServerComponent: React.FC = () => (
+    <ServerTranslation
+        term='intro.description' // We have {{number}} tariffs. Read more about pricings <link>special section</link>
+        components={{
+            link: <a href='#' />
+        }}
+        query={{ number: 5 }}
+    />
+)
+```
+
+You can also specify the desired language and translations will be added specifically for it:
+```tsx
+<ServerTranslation
+    term='intro.description'
+    language="fr"
+/>
+```

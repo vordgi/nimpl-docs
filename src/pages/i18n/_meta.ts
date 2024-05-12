@@ -1,8 +1,8 @@
 const config = {
     "index": "Introduction",
-    "usage": "Usage",
     "configuration": "Configuration",
-    "app-organization": "App Organization"
+    "app-organization": "App Organization",
+    "api": "API"
 }
 
 export default config;
