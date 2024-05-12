@@ -1,0 +1,30 @@
+---
+title: 'ClientTranslation | @nimpl/i18n'
+---
+
+import Hint from '@/components/Hint'
+
+# ClientTranslation
+
+A component for adding complex translations in client components. Unlike hooks, it supports adding components inside translations.
+
+```tsx
+"use client";
+
+import ClientTranslation from '@nimpl/i18n/ClientTranslation';
+
+const ClientComponent: React.FC = () => (
+    <ClientTranslation
+        term='intro.description' // We have {{number}} tariffs. Read more about pricings <link>special section</link>
+        components={{
+            link: <a href='#' />
+        }}
+        query={{ number: 5 }}
+    />
+)
+```
+
+<Hint>
+The ClientTranslation and client hook [useTranslation](/i18n/api/use-translation), unlike server [getTranslation](/i18n/api/get-translation) and [ServerTranslation](/i18n/api/ServerTranslation), do not support language customization. 
+This is because translations are determined by server parents, as a result, and the language is fixed in them.
+</Hint>
