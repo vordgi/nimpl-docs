@@ -18,6 +18,10 @@ const config = {
       "i18n": {
         "title": "i18n",
         "href": "/i18n"
+      },
+      "context": {
+        "title": "context",
+        "href": "/context"
       }
     }
   },

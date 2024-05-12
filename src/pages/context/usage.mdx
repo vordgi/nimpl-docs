@@ -1,5 +1,5 @@
 ---
-title: 'Server Contexts | @nimpl/getters'
+title: 'Server Contexts | @nimpl/context'
 ---
 
 # Server Contexts
@@ -12,7 +12,7 @@ Familiar React Contexts, but working fully in React Server Components
 
 1\. **Initialize the context**
 ```tsx filename="./ExampleContext.ts"
-import createServerContext from "@nimpl/getters/create-server-context"
+import createServerContext from "@nimpl/context/create-server-context"
 
 export const ExampleContext = createServerContext<{ data: string }>()
 ```
@@ -33,7 +33,7 @@ export default function ParentComponent() {
 
 3\. **Get context data**
 ```tsx filename="./ChildComponent.tsx"
-import getServerContext from "@nimpl/getters/get-server-context"
+import getServerContext from "@nimpl/context/get-server-context"
 import { ExampleContext } from "./ExampleContext"
 
 export default function ChildComponent() {

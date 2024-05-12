@@ -13,6 +13,10 @@ const Implementations = () => (
                     <p className="font-semibold text-2xl font-geist">@nimpl/i18n</p>
                     <p className="text-xl mt-4">Internationalization library for React.js with an enabled server component</p>
                 </a>
+                <a href="/context" className={`${styles["nimpl-card"]} block relative bg-neutral-100 rounded-xl p-8`}>
+                    <p className="font-semibold text-2xl font-geist">@nimpl/context</p>
+                    <p className="text-xl mt-4">Server contexts for RSC without switching to SSR</p>
+                </a>
             </div>
         </div>
         <div className="mt-10">
