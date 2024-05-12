@@ -57,6 +57,10 @@ const config = {
       }
     }
   },
+  "blog": {
+    "title": "Blog",
+    "type": "page"
+  },
   "---": {
     "type": "separator"
   },
