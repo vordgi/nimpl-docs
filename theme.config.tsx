@@ -27,18 +27,26 @@ const config: DocsThemeConfig = {
     },
     docsRepositoryBase: 'https://github.com/vordgi/nimpl-docs/tree/main',
     head: function useHead() {
-        const config = useConfig<{ description?: string; image?: string }>();
+        const { frontMatter: config } = useConfig<{ description?: string; image?: string; title: string }>();
+        const description = config.description || 'Documentation for solutions for your Next.js project | @nimpl'
+
         return (
             <>
                 <title>{config.title}</title>
-                <meta property="og:title" content={config.title} />
+                <meta httpEquiv="Content-Language" content="en" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta name="description" content="nimpl docs" />
-                <meta property="og:description" content="nimpl docs" />
+                <meta name="description" content={description} />
+                <meta property="og:title" content={config.title} />
+                <meta property="og:description" content={description} />
                 <meta
                     property="og:image"
                     content="https://nimpl.tech/preview.png"
                 />
+                <meta property="og:locale" content="en_US" />
+                <meta property="og:type" content="website" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:site:domain" content="nimpl.tech" />
+                <meta name="twitter:url" content="https://nimpl.tech" />
             </>
         )
     },
