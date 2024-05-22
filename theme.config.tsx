@@ -1,4 +1,5 @@
 import { useConfig, type DocsThemeConfig } from 'nextra-theme-docs'
+import { exec } from 'child_process';
 
 const config: DocsThemeConfig = {
     logo: (
@@ -27,8 +28,9 @@ const config: DocsThemeConfig = {
     },
     docsRepositoryBase: 'https://github.com/vordgi/nimpl-docs/tree/main',
     head: function useHead() {
-        const { frontMatter: config } = useConfig<{ description?: string; image?: string; title: string }>();
-        const description = config.description || 'Documentation for solutions for your Next.js project | @nimpl'
+        const { frontMatter: config } = useConfig<{ description?: string; previewName?: string; title: string }>();
+        const description = config.description || 'Documentation for solutions for your Next.js project | @nimpl';
+        const image = config.previewName ? `https://nimpl.tech/preview/${config.previewName}.png` : "https://nimpl.tech/preview.png";
 
         return (
             <>
@@ -40,7 +42,7 @@ const config: DocsThemeConfig = {
                 <meta property="og:description" content={description} />
                 <meta
                     property="og:image"
-                    content="https://nimpl.tech/preview.png"
+                    content={image}
                 />
                 <meta property="og:locale" content="en_US" />
                 <meta property="og:type" content="website" />

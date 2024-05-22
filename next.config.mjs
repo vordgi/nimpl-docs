@@ -6,6 +6,12 @@ import nextra from 'nextra';
 const nextConfig = {
     reactStrictMode: true,
     transpilePackages: ['geist/font/sans', 'next/font'],
+    webpack: (config) => {
+        config.resolve.fallback = {
+            "child_process": false,
+        }
+        return config;
+    },
 };
 
 const withNextra = nextra({
