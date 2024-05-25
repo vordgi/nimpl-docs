@@ -9,8 +9,8 @@
         width: 60px;
         height: 60px;
         border-radius: 30px;
-        background-color: #D20062;
-        box-shadow: 0 0 47px 54px #D20062;
+        background-color: rgb(var(--color-dye-pink));
+        box-shadow: 0 0 47px 54px rgb(var(--color-dye-pink));
         opacity: .1;
     }
 }
@@ -121,8 +121,8 @@
         width: 60px;
         height: 60px;
         border-radius: 30px;
-        background-color: #D20062;
-        box-shadow: 0 0 47px 54px #D20062;
+        background-color: rgb(var(--color-dye-pink));
+        box-shadow: 0 0 47px 54px rgb(var(--color-dye-pink));
         opacity: .1;
     }
     &::after {
@@ -135,19 +135,14 @@
         width: 60px;
         height: 60px;
         border-radius: 30px;
-        background-color: #5356FF;
-        box-shadow: 0 0 47px 54px #5356FF;
+        background-color: rgb(var(--color-dye-blue));
+        box-shadow: 0 0 47px 54px rgb(var(--color-dye-blue));
         opacity: .1;
     }
 }
 
 .nimpl-line {
-    position: absolute;
-    width: 100%;
-    height: 6px;
-    top: 5px;
-    border-radius: 3px;
-    background: linear-gradient(90deg, #D20062 20%, #5356FF 80%);
+    background: linear-gradient(90deg, rgb(var(--color-dye-pink)) 20%, rgb(var(--color-dye-blue)) 80%);
     background-size: 200% 200%;
     animation: line-anim 2s infinite;
 }
@@ -223,8 +218,8 @@
         width: 60px;
         height: 60px;
         border-radius: 30px;
-        background-color: #D20062;
-        box-shadow: 0 0 47px 54px #D20062;
+        background-color: rgb(var(--color-dye-pink));
+        box-shadow: 0 0 47px 54px rgb(var(--color-dye-pink));
         opacity: .1;
     }
     &::after {
@@ -237,19 +232,14 @@
         width: 60px;
         height: 60px;
         border-radius: 30px;
-        background-color: #5356FF;
-        box-shadow: 0 0 47px 54px #5356FF;
+        background-color: rgb(var(--color-dye-blue));
+        box-shadow: 0 0 47px 54px rgb(var(--color-dye-blue));
         opacity: .1;
     }
 }
 
 .nimpl-ad-line {
-    position: absolute;
-    width: 100%;
-    height: 6px;
-    top: 5px;
-    border-radius: 3px;
-    background: linear-gradient(90deg, rgb(var(--color-neutral-300)), #D20062);
+    background: linear-gradient(90deg, rgb(var(--color-neutral-300)), rgb(var(--color-dye-pink)));
     background-size: 200% 200%;
     animation: ad-line-anim 2s linear infinite;
 }
@@ -281,9 +271,11 @@
 @keyframes ad-dot {
     0% {
         bottom: -80px;
+        opacity: 0;
     }
     60% {
         bottom: 0;
+        opacity: 1;
     }
     80% {
         bottom: 0;

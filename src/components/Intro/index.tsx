@@ -29,10 +29,12 @@ const Intro = () => {
                 onMouseLeave={onMouseLeave}
                 onMouseEnter={onMouseEnter}
             >
-                <h1 className="text-center text-4xl md:text-6xl font-geist font-extrabold">Solutions for your Next.js project</h1>
+                <h1 className="text-center text-4xl md:text-6xl font-geist font-extrabold">
+                    <span className="text-dye-blue">Solutions</span> for your <span className="text-dye-pink">Next.js</span> project
+                </h1>
                 <h2 className="text-center text-xl md:text-2xl mt-8 md:mt-8 mx-auto text-neutral-800 font-light">cover the flaws of next.js and supplement it with much-desired functionality</h2>
                 <div className="grid grid-flow-col gap-4 justify-center mt-16">
-                        <Link href="/#implementations" className="relative block p-0.5 text-center rounded-md bg-[#5356FF] hover:opacity-80 text-lg font-medium leading-none">
+                        <Link href="/#implementations" className="relative block p-0.5 text-center rounded-md bg-dye-blue hover:opacity-80 text-lg font-medium leading-none">
                             <span className="flex items-center w-full h-full bg-neutral-50 px-8 py-3 rounded font-geist">Get Started</span>
                         </Link>
                         <Link href="/#about" className="relative block p-0.5 text-center rounded-md bg-neutral-700 hover:opacity-80 text-lg font-medium leading-none">

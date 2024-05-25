@@ -1,10 +1,10 @@
 .nimpl-card {
-    --first-color: rgb(var(--color-neutral-100));
-    --second-color: rgb(var(--color-neutral-200));
+    --first-color: rgb(var(--color-neutral-200));
+    --second-color: rgb(var(--color-neutral-500));
 
     &:hover{
-        --first-color: #D20062;
-        --second-color: #5356FF;
+        --first-color: rgb(var(--color-dye-pink));
+        --second-color: rgb(var(--color-dye-blue));
     }
 
     &::after {
