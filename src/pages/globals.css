@@ -19,7 +19,9 @@
         --color-neutral-850: 42 42 42;
         --color-neutral-900: 37 37 37;
         --color-neutral-950: 33 33 33;
-        --color-base-0: 255 255 255;
+        --color-base-0: 248 248 248;
+        --color-dye-pink: 210 0 98;
+        --color-dye-blue: 83 86 255;
     }
 
     :root[class~=dark] {
@@ -39,5 +41,7 @@
         --color-neutral-900: 251 251 251;
         --color-neutral-950: 255 255 255;
         --color-base-0: 17 17 17;
+        --color-dye-pink: 240 35 130;
+        --color-dye-blue: 83 86 255;
     }
 }
