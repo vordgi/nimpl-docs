@@ -1,5 +1,4 @@
 import { useConfig, type DocsThemeConfig } from 'nextra-theme-docs'
-import { exec } from 'child_process';
 
 const config: DocsThemeConfig = {
     logo: (
