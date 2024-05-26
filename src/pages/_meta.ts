@@ -37,6 +37,10 @@ const config = {
         "title": "config",
         "href": "/config"
       },
+      "middleware-chain": {
+        "title": "middleware-chain",
+        "href": "/middleware-chain"
+      },
       "ab-tests": {
         "title": "ab-tests",
         "href": "/ab-tests"
@@ -66,9 +70,11 @@ const config = {
   },
   "getters": "getters",
   "i18n": "i18n",
-  "ab-tests": "ab-tests",
   "classnames-minifier": "classnames-minifier",
+  "middleware-chain": "middleware-chain",
   "config": "config",
+  "context": "context",
+  "ab-tests": "ab-tests",
   "cache-adapter": "cache-adapter",
   "cache-in-memory": "cache-in-memory",
   "contribution": "Contribution",

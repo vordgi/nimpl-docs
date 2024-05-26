@@ -1,0 +1,69 @@
+---
+title: 'Introduction | @nimpl/middleware-chain'
+description: "@nimpl/middleware-chain allows you to create a chain of native next.js middlewares without any modifications"
+previewName: middleware-chain-introduction
+---
+
+import PackageLinks from '@/components/PackageLinks'
+
+# @nimpl/middleware-chain
+
+<PackageLinks npmName="@nimpl/middleware-chain" githubName="nimpl-middleware-chain" />
+
+The package allows you to create a chain of native next.js middlewares without any modifications (*i.e., you can add any ready-made middleware to the chain*)
+
+```ts filename="middleware.ts"
+export default chain([
+    intlMiddleware,
+    authMiddleware,
+    customMiddleware,
+]);
+```
+
+## Installation
+
+**Using npm:**
+```sh npm2yarn copy
+npm i @nimpl/middleware-chain
+```
+
+## How it works
+
+The middleware-chain processes the passed middlewares in turn.
+
+Each middleware is called with a modified **original** request argument. The only difference is the enrichment with a `summary` key with all accumulated data in the format:
+
+```ts
+interface Summary {
+    type: NextType;
+    destination?: string | NextURL;
+    body?: ReadableStream<Uint8Array>;
+    cookies: Map<string, ResponseCookie>;
+    headers: Headers;
+    status: number;
+    statusText?: string;
+}
+```
+
+The `summary` is readonly, i.e. it cannot be modified. All changes are made only through the native next.js API (*by returning `NextResponse` with necessary additions*).
+
+## Motivation
+
+All existing solutions work through their own APIs - made under the style of express or in their own vision. They are useful, well implemented, and convenient. But only in cases where you can update every used middleware.
+
+However, there are many situations where you need to add already prepared solutions. Usually, in the issues of these solutions, you can find "support to add a chain package A, working with chain package B".
+
+This package follows a plug and play format. In the best traditions of the previous next.js.
+
+This is not Koa and not Express, this is a package for next.js, in its unique style, in the format of its API.
+
+## Examples
+
+* [Base example](https://github.com/vordgi/middleware-chain/tree/main/examples/base).
+* [next-auth + next-intl example](https://github.com/vordgi/middleware-chain/tree/main/examples/auth-intl).
+
+## Additional
+
+Please consider giving a star if you like it, it shows that the package is useful and helps me continue work on this and other packages.
+
+Create issues with wishes, ideas, difficulties, etc. All of them will definitely be considered and thought over.

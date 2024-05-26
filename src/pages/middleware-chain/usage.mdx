@@ -1,0 +1,70 @@
+---
+title: 'Usage | @nimpl/middlware-chain'
+description: ''
+previewName: middlware-chain-configuration
+---
+
+# Usage
+
+## chain
+
+The chain takes an array of middleware. Upon request, it will sequentially process each middleware and return a NextResponse with the collected data ([summary](/middleware-chain#how-it-works)).
+
+This could be a series of your custom middlewares:
+
+```ts filename="middleware.ts"
+import { type NextRequest, NextResponse } from "next/server";
+import { chain } from "@nimpl/middleware-chain";
+
+export const middleware = chain([
+    async (request: NextRequest) => {
+        const next = NextResponse.next({ headers: new Headers({ "x-pathname": request.nextUrl.pathname }) });
+        next.cookies.set("test", "cookie", { domain: "localhost", secure: true });
+        return next;
+    },
+    async (request: NextRequest) => {
+        return NextResponse.rewrite(new URL("/rewritten", request.url));
+    },
+]);
+```
+
+And a series of ready-made solutions:
+
+```ts filename="middleware.ts"
+import { default as authMiddleware } from "next-auth/middleware";
+import createMiddleware from "next-intl/middleware";
+import { chain } from "@nimpl/middleware-chain";
+
+const intlMiddleware = createMiddleware({
+    locales: ["en", "dk"],
+    defaultLocale: "en",
+});
+
+export default chain([
+    intlMiddleware,
+    authMiddleware,
+]);
+```
+
+**Important**: `NextResponse.rewrite`, `NextResponse.redirect`, and `NextResponse.json` do not terminate the execution of the chain. If the subsequent middleware of the chain returns a new type - the chain will continue execution with new data. At the same time, a message of the following type will be output to the console:
+`http://localhost:3000/ (none) -> http://localhost:3000/rewritten (rewrite)`
+
+This is done so that it is possible to pass several ready-made solutions (such as for example `next-auth` and `next-intl`)
+
+You can stop the execution of the chain using `FinalNextResponse`.
+
+## FinalNextResponse
+
+If you wish, you can embed your middleware between the ready ones, where to stop further execution with the help of returning `FinalNextResponse`, for example if `summary.type === 'redirect'`
+
+For instance, in the case with `next-intl` + `next-auth`, we may not want authorization handling until the redirect (*because after the redirect, the middleware will be processed again*):
+
+```ts filename="middleware.ts"
+export default chain([
+    intlMiddleware,
+    (req) => {
+        if (req.summary.type === "redirect") return FinalNextResponse.next();
+    },
+    authMiddleware,
+]);
+```

@@ -1,6 +1,6 @@
 const config = {
     "index": "Introduction",
-    "configuration": "Configuration"
+    "usage": "Usage"
 }
 
 export default config;
