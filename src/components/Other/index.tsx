@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 
 const Other = () => (
-    <section className="pt-32 pb-32 mb-32" id="about">
+    <section className="py-20 sm:py-32 lg:py-40" id="about">
         <div className="container">
             <div className={`${styles["bg-anim"]} overflow-x-hidden relative`}>
                 <div className="lg:flex border-t-2 border-b-2 border-neutral-100 border-dashed">
