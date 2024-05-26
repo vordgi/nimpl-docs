@@ -30,6 +30,10 @@ const Implementations = () => (
                     <p className="font-semibold text-2xl font-geist">@nimpl/config</p>
                     <p className="text-xl mt-4">Convenient management of application configuration in different environments</p>
                 </a>
+                <a href="/middleware-chain" className={`${styles["nimpl-card"]} block relative bg-neutral-100 rounded-xl p-8`}>
+                    <p className="font-semibold text-2xl font-geist">@nimpl/middleware-chain</p>
+                    <p className="text-xl mt-4">Create a chain of native next.js middlewares without any modifications</p>
+                </a>
                 <a href="/ab-tests" className={`${styles["nimpl-card"]} block relative bg-neutral-100 rounded-xl p-8`}>
                     <p className="font-semibold text-2xl font-geist">@nimpl/ab-tests</p>
                     <p className="text-xl mt-4">A package for conducting A/B tests on a website using middleware</p>
