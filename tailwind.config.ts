@@ -27,6 +27,7 @@ const config: Config = {
         'base-0': "rgb(var(--color-base-0) / <alpha-value>)",
         'dye-pink': "rgb(var(--color-dye-pink) / <alpha-value>)",
         'dye-blue': "rgb(var(--color-dye-blue) / <alpha-value>)",
+        'primary': "rgb(var(--color-primary) / <alpha-value>)",
       },
       fontFamily: {
         geist: ['var(--font-geist)'],

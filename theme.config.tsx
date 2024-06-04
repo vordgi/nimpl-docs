@@ -22,7 +22,9 @@ const config: DocsThemeConfig = {
     footer: {
         content: function useText() {
             return (
-                '© 2024 nimpl'
+                <p className='text-neutral-950 copyright'>
+                    © 2024 nimpl
+                </p>
             )
         }
     },
