@@ -22,8 +22,8 @@ const config: DocsThemeConfig = {
     footer: {
         content: function useText() {
             return (
-                <p className='text-neutral-950 copyright'>
-                    © 2024 nimpl
+                <p className='text-neutral-950 footer-content'>
+                    © 2024 nimpl. Powered by <a href="https://x.com/vordgi" target="_blank" rel="noopener noreferrer" className='text-dye-blue hover:opacity-80'>vordgi</a>
                 </p>
             )
         }
