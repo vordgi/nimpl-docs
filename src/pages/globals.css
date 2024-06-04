@@ -67,7 +67,7 @@
     opacity: 1;
 }
 
-footer button[data-headlessui-state], .copyright {
+footer button[data-headlessui-state], .footer-content {
     font-weight: 600;
 }
 
