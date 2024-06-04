@@ -45,3 +45,36 @@
         --color-dye-blue: 83 86 255;
     }
 }
+
+.nextra-nav-container, .nextra-sidebar-container {
+    button, a, kbd {
+        color: rgb(var(--color-neutral-950)) !important;
+        font-weight: 600;
+
+        &:hover, &[aria-expanded=true] {
+            color: rgb(var(--color-dye-blue)) !important;
+        }
+    }
+}
+
+.nextra-sidebar-container {
+    visibility: hidden;
+    opacity: 0;
+}
+
+._fixed._inset-0._z-10 + .nextra-sidebar-container {
+    visibility: visible;
+    opacity: 1;
+}
+
+footer button[data-headlessui-state], .copyright {
+    font-weight: 600;
+}
+
+footer button[data-headlessui-state] {
+    color: rgb(var(--color-neutral-900)) !important;
+
+    &:hover, &[aria-expanded=true] {
+        color: rgb(var(--color-dye-blue)) !important;
+    }
+}
