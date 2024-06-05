@@ -57,15 +57,13 @@
     }
 }
 
-.nextra-sidebar-container {
-    @media (width < 768px) {
+@media (max-width: 767px) {
+    .nextra-sidebar-container {
         visibility: hidden;
         opacity: 0;
     }
-}
 
-._fixed._inset-0._z-10 + .nextra-sidebar-container {
-    @media (width < 768px) {
+    ._fixed._inset-0._z-10 + .nextra-sidebar-container {
         visibility: visible;
         opacity: 1;
     }
