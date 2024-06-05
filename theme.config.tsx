@@ -2,7 +2,7 @@ import { useConfig, type DocsThemeConfig } from 'nextra-theme-docs'
 
 const config: DocsThemeConfig = {
     logo: (
-        <svg width={66} height={24} viewBox="0 0 88 33">
+        <svg width={66} height={24} viewBox="0 0 88 33" aria-label="Nimpl">
             <path d="M27.6782 6.52874C27.6782 5.91932 28.1722 5.42529 28.7816 5.42529H30.9885C31.5979 5.42529 32.092 5.91932 32.092 6.52874V31.0805C32.092 31.6899 31.5979 32.1839 30.9885 32.1839H28.7816C28.1722 32.1839 27.6782 31.6899 27.6782 31.0805V6.52874Z" fill="rgb(var(--color-dye-blue))"/>
             <path d="M35.0345 20.046C35.0345 19.4366 35.5285 18.9425 36.1379 18.9425H38.3448C38.9542 18.9425 39.4483 19.4366 39.4483 20.046V31.0805C39.4483 31.6899 38.9542 32.1839 38.3448 32.1839H36.1379C35.5285 32.1839 35.0345 31.6899 35.0345 31.0805V20.046Z" fill="rgb(var(--color-dye-blue))"/>
             <path d="M42.3908 6.52874C42.3908 5.91932 42.8848 5.42529 43.4943 5.42529H45.7011C46.3106 5.42529 46.8046 5.91932 46.8046 6.52874V31.0805C46.8046 31.6899 46.3106 32.1839 45.7011 32.1839H43.4943C42.8848 32.1839 42.3908 31.6899 42.3908 31.0805V6.52874Z" fill="rgb(var(--color-dye-blue))"/>
@@ -22,8 +22,8 @@ const config: DocsThemeConfig = {
     footer: {
         content: function useText() {
             return (
-                <p className='text-neutral-950 footer-content'>
-                    © 2024 nimpl. Powered by <a href="https://x.com/vordgi" target="_blank" rel="noopener noreferrer" className='text-dye-blue hover:opacity-80'>vordgi</a>
+                <p className='text-neutral-900 footer-content'>
+                    © 2024 nimpl. Powered by <a href="https://x.com/vordgi" target="_blank" rel="noopener noreferrer" className='text-neutral-950 hover:opacity-80'>vordgi</a>
                 </p>
             )
         }

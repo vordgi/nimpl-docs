@@ -58,14 +58,14 @@
 }
 
 .nextra-sidebar-container {
-    @media (width < 768) {
+    @media (width < 768px) {
         visibility: hidden;
         opacity: 0;
     }
 }
 
 ._fixed._inset-0._z-10 + .nextra-sidebar-container {
-    @media (width < 768) {
+    @media (width < 768px) {
         visibility: visible;
         opacity: 1;
     }
