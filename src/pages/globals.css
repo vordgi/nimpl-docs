@@ -58,13 +58,17 @@
 }
 
 .nextra-sidebar-container {
-    visibility: hidden;
-    opacity: 0;
+    @media (width < 768) {
+        visibility: hidden;
+        opacity: 0;
+    }
 }
 
 ._fixed._inset-0._z-10 + .nextra-sidebar-container {
-    visibility: visible;
-    opacity: 1;
+    @media (width < 768) {
+        visibility: visible;
+        opacity: 1;
+    }
 }
 
 footer button[data-headlessui-state], .footer-content {
