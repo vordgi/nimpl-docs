@@ -57,7 +57,7 @@ const config: DocsThemeConfig = {
     banner: {
       key: 'news-05-2024',
       content: (
-        <a href="/blog/news-05-2024">
+        <a href="/blog/news-05-2024" className="py-3">
           🎉 Improvements in getters, i18n v2.0.0, enhancements in ab-tests, and much more. Nimpl news for April-May
         </a>
       ),
