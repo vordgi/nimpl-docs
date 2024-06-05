@@ -54,6 +54,29 @@ const Implementations = () => (
                     </a>
                 </div>
             </div>
+            <div className="mt-10">
+                <h2 className="text-3xl mb-6 font-geist">Tools</h2>
+                <div className="grid sm:max-xl:grid-cols-2 xl:grid-cols-3 gap-8 items-start">
+                    <a
+                        href="https://www.npmjs.com/package/@nimpl/inio"
+                        className={`${styles["nimpl-card"]} block relative bg-neutral-100 rounded-xl p-8`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <p className="font-semibold text-2xl font-geist">@nimpl/inio</p>
+                        <p className="text-xl mt-4">Utility for editing a group of JSON files. Plug-and-Play solution - just Run and Edit!</p>
+                    </a>
+                    <a
+                        href="https://www.npmjs.com/package/@nimpl/versioner"
+                        className={`${styles["nimpl-card"]} block relative bg-neutral-100 rounded-xl p-8`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        <p className="font-semibold text-2xl font-geist">@nimpl/versioner</p>
+                        <p className="text-xl mt-4">A package for versioning your next.js application (experiment)</p>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 )

@@ -61,6 +61,22 @@ const config = {
       }
     }
   },
+  "tools": {
+    "title": "Tools",
+    "type": "menu",
+    "items": {
+      "inio": {
+        "title": "inio",
+        "href": "https://www.npmjs.com/package/@nimpl/inio",
+        "newWindow": true
+      },
+      "versioner": {
+        "title": "versioner",
+        "href": "https://www.npmjs.com/package/@nimpl/versioner",
+        "newWindow": true
+      }
+    }
+  },
   "blog": {
     "title": "Blog",
     "type": "page"
