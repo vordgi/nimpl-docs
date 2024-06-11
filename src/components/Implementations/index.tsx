@@ -58,7 +58,7 @@ const Implementations = () => (
                 <h2 className="text-3xl mb-6 font-geist">Tools</h2>
                 <div className="grid sm:max-xl:grid-cols-2 xl:grid-cols-3 gap-8 items-start">
                     <a
-                        href="https://www.npmjs.com/package/@nimpl/inio"
+                        href="https://inio.nimpl.tech/"
                         className={`${styles["nimpl-card"]} block relative bg-neutral-100 rounded-xl p-8`}
                         target="_blank"
                         rel="noopener noreferrer"
