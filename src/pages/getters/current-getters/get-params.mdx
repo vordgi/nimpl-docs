@@ -1,6 +1,6 @@
 ---
 title: 'get-params | @nimpl/getters'
-description: 'get-params retrieves dynamic parameters for the current page. Works the same as next.js useParams, but in a React server component'
+description: 'get-params retrieves dynamic parameters for the current page. Works the same as next.js useParams, but in React Server Components'
 previewName: getters-get-params
 ---
 
@@ -24,4 +24,22 @@ export default function Component() {
         // ...
     )
 }
+```
+
+## Options
+
+You can pass params object as arguments to getParams.
+
+`ignoreDifferenceError` - this option disables difference errors, and in such situations, the function will simply return `null`.
+
+`pagePaths` - custom page paths for parsing the current pathname (e.g., `["/specific/[locale]/[...subpaths]/page", "/[locale]/base/[...subpaths]/page"]`).
+
+```ts
+const params = getParams({
+  ignoreDifferenceError: true,
+  pagePaths: ["/specific/[locale]/[...subpaths]/page", "/[locale]/base/[...subpaths]/page"],
+});
+// "/specific/de/unknown-page" -> { locale: "de", subpaths: ["unknown-page"] }
+// "/it/base/unknown-page" -> { locale: "it", subpaths: ["unknown-page"] }
+// "/it/invalid/unknown-page" -> null
 ```
