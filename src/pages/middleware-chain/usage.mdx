@@ -1,6 +1,6 @@
 ---
 title: 'Usage | @nimpl/middlware-chain'
-description: ''
+description: 'The chain takes an array of middleware. Upon request, it will sequentially process each middleware and return a NextResponse with the collected data summary'
 previewName: middlware-chain-configuration
 ---
 
@@ -52,6 +52,26 @@ export default chain([
 This is done so that it is possible to pass several ready-made solutions (such as for example `next-auth` and `next-intl`)
 
 You can stop the execution of the chain using `FinalNextResponse`.
+
+## Item Rules
+
+In some situations, you may need to run certain chain middlewares only for specified paths.
+
+In this situation, you can specify item rules. Simply change the item to an array and pass the rules as the second array item.
+
+You can specify `include` and `exclude` rules:
+
+```ts
+export default chain([
+    [intlMiddleware, { exclude: /^\/private(\/.*)?$/ }],
+    () => {
+        const next = new NextResponse();
+        next.cookies.set("custom-cookie", Date.now().toString());
+        return next;
+    },
+    [nextAuth, { include: /^\/private(\/.*)?$/ }],
+]);
+```
 
 ## FinalNextResponse
 
