@@ -41,6 +41,10 @@ const config = {
         "title": "middleware-chain",
         "href": "/middleware-chain"
       },
+      "router": {
+        "title": "router",
+        "href": "/router"
+      },
       "ab-tests": {
         "title": "ab-tests",
         "href": "/ab-tests"
@@ -88,6 +92,7 @@ const config = {
   "i18n": "i18n",
   "classnames-minifier": "classnames-minifier",
   "middleware-chain": "middleware-chain",
+  "router": "router",
   "config": "config",
   "context": "context",
   "ab-tests": "ab-tests",
