@@ -4,48 +4,106 @@ title: "Nimpl News 06/2024 | nimpl/blog"
 
 # Nimpl News 06/2024
 
-## Documentation Changes [nimpl.tech](http://nimpl.tech/)
+## @nimpl/getters improvement
 
-New design. The site now reflects the history of the nimpl family solutions. After all, everything started with next-impl - implementation for next.js. It was decided to make the name simpler afterward. The new name reflects simplification of life, but retains its original goal - implementations, i.e., examples of solving the main problems on next.js.
+In `get-params`, you can now pass options for obtaining parameters in specific conditions:
 
-The new design shows this connection, demonstrates how nimpl interacts with next.js, complements it, and uses its capabilities.
+`ignoreDifferenceError` - In case of error or segments difference, the getter will return null (*e.g., `/_not-found` could be at `/it/removed-page` and it would not have any params*)
 
-At the same time, the site's accessibility has been completely improved. The site is now not only fast but also accessible.
+`pathname` - Custom pathname (e.g., `["/example/custom"]`). Usable for rewritten pages in SSR or custom functions
 
-A new category was added, tools - utilities that can make life better. At the moment, they include [@nimpl/versioner](https://github.com/vordgi/nimpl-versioner) and [@nimpl/inio](https://github.com/vordgi/nimpl-inio).
+`pagePaths` - Custom pagePaths list (e.g., `["/example/[slug]/page"]`). Usable for rewritten pages in SSR or custom functions
 
-## New package - @nimpl/middleware-chain
+https://github.com/vordgi/nimpl-getters/pull/80
 
-During the work on the package [@nimpl/ab-tests](https://github.com/vordgi/nimpl-ab-tests), it was decided to test it in several projects. However, adding a simple middleware turned out to be a real adventure. The problem is that there were already middleware in the projects - one with next-intl, one with next-auth.
+## @nimpl/classnames-minifier improvements
 
-All existing middleware combination solutions work through their own APIs - they are made in the style of express.js or in their own vision. They are useful, well-implemented, and convenient. But only in those cases when each used middleware can be updated for them.
+The package synchronizes with the next.js cache. However, under unknown circumstances, there is a possibility that the cache in next.js will not update when the package expects it to. To avoid this, an experimental function for limiting copies has been added (https://github.com/vordgi/classnames-minifier/issues/35, https://github.com/vordgi/nimpl-classnames-minifier/issues/102).
 
-But it was necessary for each middleware to work like the original middleware from next.js. That's how [@nimpl/middleware-chain](https://github.com/vordgi/nimpl-middleware-chain) appeared:
-
-```tsx
-import { default as authMiddleware } from "next-auth/middleware";
-import createMiddleware from "next-intl/middleware";
-import { chain } from "@nimpl/middleware-chain";
-
-const intlMiddleware = createMiddleware({
-  locales: ["en", "dk"],
-  defaultLocale: "en",
-});
-
-export default chain([intlMiddleware, authMiddleware]);
+```js
+module.exports = async (phase) => {
+  const classnamesMinifierWrapper = classnamesMinifier({
+    experimental: {
+      freedNamesPolicy: 'block',
+    },
+  });
+  return classnamesMinifierWrapper(nextConfig);
+};
 ```
 
-## New tool - @nimpl/inio
+If you have encountered such situations - please write them as a package issue with a description of how to reproduce.
 
-The comfort of the development is not enough with just build packages and application logic. There is also a need for a work ecosystem that can improve DX.
+## @nimpl/middleware-chain improvements
 
-One of the problems for me is working with local translations. If you need to change the term - you need to go to each of the dozen files, dial the correct key (which is often not unique) and update.
+Now each chain element supports path rules for which it should work https://github.com/vordgi/nimpl-middleware-chain/issues/15
 
-It's not quick, it’s not comfy, it’s not developer-friendly. Dozens of actions when you literally need a few.
+```js
+export default chain([
+    [intlMiddleware, { exclude: /^\/private(\/.*)?$/ }],
+    () => {
+        const next = new NextResponse();
+        next.cookies.set("custom-cookie", Date.now().toString());
+        return next;
+    },
+    [nextAuth, { include: /^\/private(\/.*)?$/ }],
+]);
+```
 
-That's why I appreciated the idea of creating a dynamic new way to edit JSON files. A Plug-and-Play solution - just Run and Edit! With [@nimpl/inio](https://github.com/vordgi/nimpl-inio).
+## New package - @nimpl/router
 
-<video width="100%" height="auto" autoPlay loop controls muted className="mt-4">
-  <source src="/blog/nimpl-inio-demo.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
+https://nimpl.tech/router
+
+Edge router for next.js apps. Allows you to configure rewrites, redirects, i18n and basePath at the middleware level instead of next.config.js.
+
+```js
+import { createMiddleware } from '@nimpl/router';
+ 
+export const middleware = createMiddleware({
+    redirects: [
+        {
+            source: '/old',
+            destination: '/',
+            permanent: false,
+        },
+    ],
+    rewrites: [
+        {
+            source: '/home',
+            destination: '/',
+            locale: false,
+        },
+    ],
+    basePath: '/doc',
+    i18n: {
+        defaultLocale: 'en',
+        locales: ['en', 'de'],
+    },
+});
+```
+
+## inio improvements
+
+Updated service homepage - [inio.nimpl.tech](http://inio.nimpl.tech/)
+
+Many improvements to make the editor even faster, more convenient, and more useful
+
+[ni-105 support multiple patterns](https://github.com/vordgi/nimpl-inio/pull/106)
+
+[ni-98 support indent rules](https://github.com/vordgi/nimpl-inio/pull/99)
+
+[ni-79 pagination and count on page logic](https://github.com/vordgi/nimpl-inio/pull/80)
+
+[ni-56 add missings filter](https://github.com/vordgi/nimpl-inio/pull/75)
+
+[ni-68 limit tool scope](https://github.com/vordgi/nimpl-inio/pull/69)
+
+Thanks to [@zakidze](https://github.com/zakidze) for many new ideas!
+
+## Documentation Changes
+
+Improvements in documentation:
+
+* [Describe nimpl-router](https://github.com/vordgi/nimpl-docs/issues/122);
+* [Update middleware-chain docs](https://github.com/vordgi/nimpl-docs/issues/119);
+* [Change link to nimpl/inio](https://github.com/vordgi/nimpl-docs/issues/117);
+* [Update get-params docs](https://github.com/vordgi/nimpl-docs/issues/116);
