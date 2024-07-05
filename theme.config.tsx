@@ -58,7 +58,7 @@ const config: DocsThemeConfig = {
       key: 'news-06-2024',
       content: (
         <a href="/blog/news-06-2024" className="py-3">
-          🎉 middleware-chain, JSONs editing tool and nimpl.tech improvements. Nimpl news for May
+          🎉 @nimpl/router, improvements for inio and getters, etc. Nimpl news for June
         </a>
       ),
     }
