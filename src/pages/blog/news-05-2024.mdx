@@ -1,41 +1,51 @@
 ---
-title: "News 05/2024 | nimpl/blog"
+title: "Nimpl News 05/2024 | nimpl/blog"
 ---
 
-# News 05/2024
+# Nimpl News 06/2024
 
-This has probably been the most active month for the nimpl family. Therefore, the decision was made to start collecting changes in the form of separate articles. This will talk about key innovations, as well as plans and new perspectives. This article will describe the changes for April-May.
+## Documentation Changes [nimpl.tech](http://nimpl.tech/)
 
-## General changes
+New design. The site now reflects the history of the nimpl family solutions. After all, everything started with next-impl - implementation for next.js. It was decided to make the name simpler afterward. The new name reflects simplification of life, but retains its original goal - implementations, i.e., examples of solving the main problems on next.js.
 
-It's worth starting with the most basic, but very delayed part. Eslint and prettier were added to all packages. At the same time, all packages were brought to a unified structure, translated into pnpm, and husky was configured. In large part, this was done with the aim of appearing the possibility of comfortable contribute to the projects.
+The new design shows this connection, demonstrates how nimpl interacts with next.js, complements it, and uses its capabilities.
 
-Packages working with next.js cache have been rewritten to TS ([nimpl-cache](https://github.com/vordgi/nimpl-cache)). Initially, they were made on typing using `js-doc` to remove the build step and problems from it. However, both from the point of view of DX, and from the point of view of quality, this approach lost to TS (_in my subjective opinion_).
+At the same time, the site's accessibility has been completely improved. The site is now not only fast but also accessible.
 
-## Documentation
+A new category was added, tools - utilities that can make life better. At the moment, they include [@nimpl/versioner](https://github.com/vordgi/nimpl-versioner) and [@nimpl/inio](https://github.com/vordgi/nimpl-inio).
 
-A [contribution guide](https://nimpl.tech/contribution) was added. It fits any package. Any suggestions and ideas are welcome. In turn, I try to respond in a timely manner and make the desired changes.
+## New package - @nimpl/middleware-chain
 
-Documentation for a number of packages has been improved ([nimpl-docs/pulls](https://github.com/vordgi/nimpl-docs/pulls?q=is%3Apr+is%3Aclosed)). The [main documentation page](https://nimpl.tech/) has also been improved and now it looks lively and more reflects the goals of the task. Thanks to **ʏᴜᴢᴢᴜᴡᴏ** from the next.js discord for [ideas](https://discord.com/channels/752553802359505017/1225489474205651025).
+During the work on the package [@nimpl/ab-tests](https://github.com/vordgi/nimpl-ab-tests), it was decided to test it in several projects. However, adding a simple middleware turned out to be a real adventure. The problem is that there were already middleware in the projects - one with next-intl, one with next-auth.
 
-## Problem fixes
+All existing middleware combination solutions work through their own APIs - they are made in the style of express.js or in their own vision. They are useful, well-implemented, and convenient. But only in those cases when each used middleware can be updated for them.
 
-Weak points of packages are gradually being fixed. In get-params from the [@nimpl/getters](https://nimpl.tech/getters) package, errors in obtaining parameters for intercepted segments and groups were fixed. This part was covered by new tests ([nimpl-getters/pull/57](https://github.com/vordgi/nimpl-getters/pull/57), [nimpl-getters/pull/62](https://github.com/vordgi/nimpl-getters/pull/62)). Thanks to [Antonio Laguna](https://github.com/Antonio-Laguna) for the issues ([nimpl-getters/issues/56](https://github.com/vordgi/nimpl-getters/issues/56), [nimpl-getters/issues/61](https://github.com/vordgi/nimpl-getters/issues/61)) and help
+But it was necessary for each middleware to work like the original middleware from next.js. That's how [@nimpl/middleware-chain](https://github.com/vordgi/nimpl-middleware-chain) appeared:
 
-In classnames-minifier, information about errors in the configuration part has been improved ([classnames-minifier/pull/19/files](https://github.com/vordgi/classnames-minifier/pull/19/files)). It also has a `disableDistDeletion` option added, in case your system has problems with deletion [nimpl-classnames-minifier/pull/93](https://github.com/vordgi/nimpl-classnames-minifier/pull/93).
+```tsx
+import { default as authMiddleware } from "next-auth/middleware";
+import createMiddleware from "next-intl/middleware";
+import { chain } from "@nimpl/middleware-chain";
 
-## Improvements
+const intlMiddleware = createMiddleware({
+  locales: ["en", "dk"],
+  defaultLocale: "en",
+});
 
-Of course, there were also improvements. In [@nimpl/config](https://nimpl.tech/config), the `targetEnvKey` option was added ([nimpl-config/pull/36](https://github.com/vordgi/nimpl-config/pull/36)), which allows you to specify from which environment variable to take the current config key.
+export default chain([intlMiddleware, authMiddleware]);
+```
 
-A series of small but important changes in the concepts of [@nimpl/ab-tests](https://nimpl.tech/ab-tests). Now the package writes only one cookie ([nimpl-ab-tests/pull/32](https://github.com/vordgi/nimpl-ab-tests/pull/32)). The idea with recording two turned out to be an unnecessary complication. The cookie itself can now be configured by setting the flags you need ([nimpl-ab-tests/pull/30](https://github.com/vordgi/nimpl-ab-tests/pull/30)). Another useful improvement was the addition of redirect support as a test option ([nimpl-ab-tests/pull/25](https://github.com/vordgi/nimpl-ab-tests/pull/25)).
+## New tool - @nimpl/inio
 
-## New items and major changes
+The comfort of the development is not enough with just build packages and application logic. There is also a need for a work ecosystem that can improve DX.
 
-In connection with the imminent release of react v19, contexts have been moved to a separate package - [@nimpl/context](https://nimpl.tech/context). However, at the same time, they are marked as unstable. The node.js functionality used inside contexts can lose content (_and this is a quote from the developers and all the available information_). If you have experience with this problem - please share in the tasks and discussions of the package.
+One of the problems for me is working with local translations. If you need to change the term - you need to go to each of the dozen files, dial the correct key (which is often not unique) and update.
 
-And finally, major changes. The first utility of the family ([@nimpl/versioner](https://github.com/vordgi/nimpl-versioner)). It is not ready for use and is primarily performed as an example of possible implementation of documentation versioning and grew from an attempt to perform a task in nextra.
+It's not quick, it’s not comfy, it’s not developer-friendly. Dozens of actions when you literally need a few.
 
-In the near future, another very useful utility will appear, but I will tell about it already in the next selection or in the form of a separate article.
+That's why I appreciated the idea of creating a dynamic new way to edit JSON files. A Plug-and-Play solution - just Run and Edit! With [@nimpl/inio](https://github.com/vordgi/nimpl-inio).
 
-And, perhaps, the main news - [@nimpl/i18n](https://nimpl.tech/i18n) [v2.0.0](https://github.com/vordgi/nimpl-i18n/releases/tag/2.0.0). The long-awaited release with fixes for all problems and errors. Removed package caching, updated API, the getLanguage function returned to the configuration, the package can work without changing the next.js configuration and other useful improvements. These were difficult decisions to remove a number of functionalities, but it was decided to leave the main advantage of the package its simplicity.
+<video width="100%" height="auto" autoPlay loop controls muted className="mt-4">
+  <source src="/blog/nimpl-inio-demo.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
