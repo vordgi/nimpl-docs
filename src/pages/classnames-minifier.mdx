@@ -1,7 +1,7 @@
 ---
-title: 'Introduction | @nimpl/classnames-minifier'
+title: 'classnames-minifier docs | nimpl'
 description: '@nimpl/classnames-minifier - library for configuring style (css/scss/sass) modules to generate compressed classes (".header" -> ".a", ".nav" -> ".b", ..., ".footer" -> ".aad", etc.) with support for changes and rebuilding without clearing the built application'
-previewName: classnames-minifier-introduction
+previewName: classnames-minifier-docs
 ---
 
 import PackageLinks from '@/components/PackageLinks'
@@ -25,6 +25,28 @@ npm i @nimpl/classnames-minifier
 
 *Compressing classes* can reduce the size of the generated html and css by up to *20%*, which will have a positive effect on page rendering and metrics (primarily [FCP](https://web.dev/first-contentful-paint/))
 
+## Configuration
+
+```js filename="next.config.js"
+const { default: classnamesMinifier } = require('@nimpl/classnames-minifier');
+const { PHASE_PRODUCTION_SERVER, PHASE_DEVELOPMENT_SERVER } = require('next/constants');
+
+module.exports = (phase) => classnamesMinifier({
+  prefix: '_',
+  reservedNames: ['_en', '_de'],
+  disabled: phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_SERVER,
+})(nextConfig);
+```
+
+*It is recommended to disable minification for development and for app startup after assembly - this way you will avoid unnecessary loads and possible cache deletions when starting the app.*
+
+### Options
+
+* `prefix` - custom prefix that will be added to each updated class;
+* `reservedNames` - array of reserved names that should not be used by this package (must include prefix);
+* `disabled` - disabling classnames minifying;
+* `disableDistDeletion` - option that allows you to disable the automatic deletion of the dist folder if necessary (*f.e. differences in package setup in cache and now or first launch*);
+
 ## Working with cache
 
 Next.js has a very complex caching system. It caches processed files and doesn't rebuild them during next builds, but takes them from the cache.
@@ -32,6 +54,10 @@ Next.js has a very complex caching system. It caches processed files and doesn't
 However, when the package config changes - all these files need to be rebuilt. Without this, there will be critically many artifacts at the intersection of names or unexpected use of previous names.
 
 For this reason, with critical changes in the package configuration, the entire application data will be deleted.
+
+## Development
+
+Read about working on the package and making changes on the [contribution page](/contribution)
 
 ## Additional
 

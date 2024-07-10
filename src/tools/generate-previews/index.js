@@ -7,22 +7,22 @@ const rootDir = join(process.cwd(), 'src/pages');
 
 const generatePreviews = async () => {
     console.log('Previews generation...');
-    const files = await glob('**/*.mdx', {
+    const files = await glob(['./**/*.mdx', './*.mdx'], {
         cwd: rootDir,
         ignore: 'blog/**',
         posix: true,
     });
 
     for await (const file of files) {
-        const { dir } = parse(file);
-        const [pkgName] = dir.split('/');
+        const { dir, name } = parse(file);
+        const pkgName = dir.split('/')?.[0] || name;
 
         const docRaw = await readFile(join(rootDir, file), 'utf-8');
         const title = docRaw.match(/^title: ['"]?(.+) \| .+['"]?$/m)?.[1];
         const previewName = docRaw.match(/^previewName: ['"]?(.+)['"]?$/m)?.[1];
 
         if (pkgName && title && previewName) {
-            buildPreview({ pkgName, title, fileName: previewName });
+            await buildPreview({ pkgName, title, fileName: previewName });
         }
     }
     console.log('Previews generation completed');

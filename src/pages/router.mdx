@@ -1,5 +1,5 @@
 ---
-title: 'Introduction | @nimpl/router'
+title: 'router | nimpl'
 description: "@nimpl/router edge router for next.js apps (i18n, basePath, rewrites, redirects)"
 previewName: router-introduction
 ---
@@ -25,7 +25,7 @@ That is, instead of two long journeys to the server, the client goes to the CDN 
 2. Next.js `i18n` is full of bugs, and in the latest versions, they completely abandoned it, recommending using middleware.
 
 3. In `middleware`, you can decide for yourself which settings to enable for which paths, which rules to set, which redirect lists for `/app` paths, and which for `/marketing`.
-Take a look at the [middleware-chain](https://nimpl.tech/middleware-chain) to get the most flexible and suitable configuration for you.
+Take a look at the [middleware-chain](/middleware-chain) to get the most flexible and suitable configuration for you.
 
 ## Installation
 
@@ -80,7 +80,7 @@ For flexibility, it is recommended not to use basePath in next.config.js, but to
 
 <Hint>
 Unlike the next.config.js solution, it has nothing to do with Link and does not participate in the generation of page paths.
-That is, localization should be embedded in the structure of the application (e.g. app/[lang]/page.tsx).
+That is, localization should be embedded in the structure of the application (e.g. `app/[lang]/page.tsx`).
 </Hint>
 
 Also, instead of a boolean `localeDetection`, the router takes a `localeDetector` method where you can set up how exactly to get the locale (_f.e. from a CloudFlare header_)
@@ -90,6 +90,10 @@ Otherwise, it repeats the logic of next.js. [Next.config.js/i18n documentation](
 <Hint>
 It is recommended not to use i18n in next.config.js, but to manually set the required locale in the links.
 </Hint>
+
+## Development
+
+Read about working on the package and making changes on the [contribution page](/contribution)
 
 ## Additional
 

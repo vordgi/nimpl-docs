@@ -1,0 +1,230 @@
+---
+title: 'getters docs | nimpl'
+description: 'Implementation of server getters in React Server Components without switching to SSR'
+previewName: getters-docs
+---
+
+import PackageLinks from '@/components/PackageLinks'
+import Hint from '@/components/Hint'
+
+# @nimpl/getters
+
+<PackageLinks npmName="@nimpl/getters" githubName="nimpl-getters" />
+
+(Former [next-impl-getters](https://www.npmjs.com/package/next-impl-getters))
+
+Implementation of server getters in React Server Components without switching to SSR.
+
+*Before using the library, read the [Possible Issues](/getters#possible-issues)*
+
+## Installation
+
+**Using npm:**
+```sh npm2yarn copy
+npm i @nimpl/getters
+```
+
+## Current Getters
+
+* [get-pathname](/getters#get-pathname)
+* [get-page-config](/getters#get-page-config)
+* [get-params](/getters#get-params)
+* [get-search-params](/getters#get-search-params)
+
+<Hint>
+Contexts, due to the release of react v19, have been moved to a separate package - [@nimpl/context](/context)
+</Hint>
+
+## Stability
+
+All getters are covered with tests. Tests are run on every release and every 6 hours on the latest **Canary** version of `Next.js`.
+
+In this way, you can be sure not only of the stability of the code, but also that if there is a breaking change in `Next.js`, this will immediately become known. *Even before the release of a stable version of `Next.js`.*
+
+## get-pathname
+
+*Uses next.js functionality*
+
+Retrieves pathname for the currently rendered page in React Server Component. Works the same as [usePathname](https://nextjs.org/docs/app/api-reference/functions/use-pathname), but in a React server component.
+
+*The getter almost fully utilizes Next.js functionality*
+
+```tsx
+import { getPathname } from '@nimpl/getters/get-pathname'
+
+export default function Component() {
+    const pathname = getPathname()
+
+    return (
+        // ...
+    )
+}
+```
+
+## get-params
+
+*Uses next.js functionality*
+
+Retrieves dynamic parameters for the current page. Works the same as [useParams](https://nextjs.org/docs/app/api-reference/functions/use-params), but in a React server component.
+
+For example, for a page at the directory `/[locale]/blog/[slug]` and pathname `/en-de/blog/example` - the getter will return `{ locale: 'en-de', slug: 'example' }`
+
+```tsx
+import { getParams } from '@nimpl/getters/get-params'
+
+export default function Component() {
+    const params = getParams()
+
+    return (
+        // ...
+    )
+}
+```
+
+**Options**
+
+You can pass params object as arguments to getParams.
+
+`ignoreDifferenceError` - this option disables difference errors, and in such situations, the function will simply return `null`.
+
+`pagePaths` - custom page paths for parsing the current pathname (e.g., `["/specific/[locale]/[...subpaths]/page", "/[locale]/base/[...subpaths]/page"]`).
+
+```ts
+const params = getParams({
+  ignoreDifferenceError: true,
+  pagePaths: ["/specific/[locale]/[...subpaths]/page", "/[locale]/base/[...subpaths]/page"],
+});
+// "/specific/de/unknown-page" -> { locale: "de", subpaths: ["unknown-page"] }
+// "/it/base/unknown-page" -> { locale: "it", subpaths: ["unknown-page"] }
+// "/it/invalid/unknown-page" -> null
+```
+
+## get-page-config
+
+*Uses next.js functionality*
+
+Gets the next.js page configuration for the currently rendered page in React Server Component.
+
+**Supported configuration data**
+
+`basePath` - project base path (sub-path of a domain). Read more in [next.js docs](https://nextjs.org/docs/app/api-reference/next-config-js/basePath)
+
+`dynamic` - next.js dynamic behavior option. Read more in [next.js docs](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamic)
+
+`pagePath` - path to the page in the folder structure (f.e. `/[locale]/blog/[slug]`)
+
+`revalidate` - revalidation time for rendered page. Read more in [next.js docs](https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate)
+
+```tsx
+import { getPageConfig } from '@nimpl/getters/get-page-config'
+// ...
+
+export default function Component() {
+    const { basePath, dynamic, pagePath, revalidate } = getPageConfig()
+
+    // getters are not hooks, so you can use them inside conditions
+    if (dynamic === 'force-dynamic') {
+        const searchParams = getSearchParams()
+        // ...
+    }
+
+    return (
+        // ...
+    )
+}
+```
+
+## get-search-params
+
+Retrieves search params for the currently rendered page in React Server Component. Works the same as [useSearchParams](https://nextjs.org/docs/app/api-reference/functions/use-search-params), but in a React server component.
+
+Getter was deprecated in version 1.2.0 because in some cases next.js can strip query parameters from the stored URL.
+
+**Possible implementation**
+
+This functionality makes no sense without dynamic mode, so you can use headers to implement it
+
+1\. Add URL header in middleware
+
+```ts filename="middleware.ts"
+import { NextResponse } from 'next/server';
+ 
+export function middleware(request: Request) {
+  const next = NextResponse.next();
+  next.headers.set('x-url', request.url);
+
+  return next;
+}
+```
+
+2\. Use new header
+
+```ts
+import { headers } from 'next/headers';
+import { getPageConfig } from '@nimpl/getters/get-page-config';
+
+export default function Component() {
+    const { dynamic } = getPageConfig();
+
+    if (dynamic === 'force-dynamic') {
+        const url = headers().get('x-url') || '';
+        const { searchParams } = new URL(url, 'http://n');
+    }
+}
+```
+
+**Previous solution**
+
+```tsx
+import { getSearchParams } from '@nimpl/getters/get-search-params'
+
+export default function Component() {
+    const searchParams = getSearchParams()
+
+    const source = searchParams.get('source')
+
+    return (
+        // ...
+    )
+}
+```
+
+Because the getter works on every request, the dynamic page parameter must be set to dynamic (*not static*) for it to work.
+
+If the page has the `dynamic='force-static'` or `dynamic='error'` option specified, the getter will throw an error. If this option is not specified, it will output a warning. It is recommended to specify force-dynamic:
+
+```tsx filename="/app/**/page.tsx"
+export const dynamic = 'force-dynamic'
+```
+
+If you are sure you want to ignore the logic with checking the dynamic option - pass `{ ignoreDynamicOptionErrors: true }` as the first argument in the getter.
+
+```tsx
+const searchParams = getSearchParams({ ignoreDynamicOptionErrors: true })
+```
+
+## What's next?
+
+Why getters instead of extending existing hooks?
+
+I'm not very fond of the idea of extending hooks - on the server, it won't be a hook no matter how you look at it. These are specifically getters. Moreover, a client-side hook can be synchronous, while a server-side getter for the same task can be asynchronous, making it a more versatile format.
+
+## Possible Issues
+
+As a potential risk of a server-side solution, the problem of Layouts is mentioned, that they do not rebuild, which is inherent in the app router foundation. I don't see any reason to change this logic.
+
+The most reliable approach, in my opinion, is to output messages to the console or even throw an error when this function is used in Layout or Error without the necessary conditions.
+
+Since at the moment it is impossible to determine in which route the component is rendered - there are no automatic errors. However, it is strongly discouraged to use this feature in layouts.
+
+## Development
+
+Read about working on the package and making changes on the [contribution page](/contribution)
+
+## Additional
+
+This package came as an attempt to implement a working get-pathname solution while waiting for a [PR](https://github.com/vercel/next.js/pull/59909) merge to add get-pathname to next.js. However, it proved to be an independent solution.
+
+Please consider giving a star if you like it, it shows that the package is useful and helps continue work on this and other packages.
+
+Create issues with wishes, ideas, difficulties, etc. All of them will definitely be considered and thought over.
