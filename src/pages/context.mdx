@@ -1,0 +1,131 @@
+---
+title: 'context docs | nimpl'
+description: 'Implementation of server contexts in React Server Components without switching to SSR'
+previewName: context-docs
+---
+
+import PackageLinks from '@/components/PackageLinks'
+import Hint from '@/components/Hint'
+
+# @nimpl/context
+
+<PackageLinks npmName="@nimpl/context" githubName="nimpl-context" />
+
+<Hint>
+**Important**: this functionality is unstable. The node.js functionality used within contexts may lose content.
+</Hint>
+
+Implementation of server contexts in React Server Components without switching to SSR.
+
+*Before using the library, read the [Possible Issues](/context#possible-issues)*
+
+<Hint>
+Previously, contexts were part of [@nimpl/getters](/getters), but with the release of react 19, they were moved to a separate package.
+</Hint>
+
+## Installation
+
+**Using npm:**
+```sh npm2yarn copy
+npm i @nimpl/context
+```
+
+## Stability
+
+Package covered with tests. Tests are run on every release and every 6 hours on the latest **Canary** version of `Next.js`.
+
+In this way, you can be sure that if there is a breaking change in `Next.js`, this will immediately become known. *Even before the release of a stable version of `Next.js`.*
+
+<Hint>
+The package uses unstable `AsyncLocalStorage` instead of `react cache` for the reason that cache from react.js works for the entire page as a whole.
+The current implementation allows to fully reproduce the logic of react client contexts.
+That is, contexts are available only inside the DOM from the provider, including for asynchronous components.
+</Hint>
+
+## How to
+
+1\. **Initialize the context**
+```tsx filename="./ExampleContext.ts"
+import createServerContext from "@nimpl/context/create-server-context"
+
+export const ExampleContext = createServerContext<{ data: string }>()
+```
+
+2\. **Transfer the data to the provider**
+```tsx filename="./ParentComponent.tsx"
+import { ExampleContext } from "./ExampleContext"
+import ChildComponent from "./ChildComponent"
+
+export default function ParentComponent() {
+    return (
+        <ExampleContext.Provider value={{ data: 'test' }}>
+            <ChildComponent />
+        </ExampleContext.Provider>
+    )
+}
+```
+
+3\. **Get context data**
+```tsx filename="./ChildComponent.tsx"
+import getServerContext from "@nimpl/context/get-server-context"
+import { ExampleContext } from "./ExampleContext"
+
+export default function ChildComponent() {
+    const context = getServerContext(ExampleContext)
+
+    return (
+        <div>
+            {context?.data}
+        </div>
+    )
+}
+```
+
+3\.1. **You can also use a consumer to get context data**
+```tsx filename="./ParentComponent.tsx"
+import { ExampleContext } from "./ExampleContext"
+import ChildComponent from "./ChildComponent"
+
+export default function ParentComponent() {
+    return (
+        <ExampleContext.Provider value={{ data: 'test' }}>
+            <ExampleContext.Consumer>
+                {(data) => {
+                    //...
+                    return <ChildComponent />
+                }}
+            </ExampleContext.Consumer>
+        </ExampleContext.Provider>
+    )
+}
+```
+
+## Possible Issues
+
+### Context loosing
+
+The functionality of node.js, used within contexts can lose content (*and this is a quote from the developers and all available information*).
+
+If you have experience with this issue - please share in the issues and discussions of the package.
+
+### Layouts don't re-render
+
+As a potential risk of a server-side solution, the problem of Layouts is mentioned, that they do not re-render, which is inherent in the app router foundation. I don't see any reason to change this logic.
+
+The most reliable approach, in my opinion, is to output messages to the console or even throw an error when this function is used in Layout or Error without the necessary conditions.
+
+Since at the moment it is impossible to determine in which route the component is rendered - there are no automatic errors. However, it is strongly discouraged to use this feature in layouts.
+
+## Examples
+
+You can see examples in the [package repository](https://github.com/vordgi/nimpl-context/tree/main/examples).
+
+## Development
+
+Read about working on the package and making changes on the [contribution page](/contribution)
+
+## Additional
+
+Please consider giving a star if you like it, it shows that the package is useful and helps continue work on this and other packages.
+
+Create issues with wishes, ideas, difficulties, etc. All of them will definitely be considered and thought over.

@@ -1,10 +1,40 @@
 ---
-title: 'Configuration | @nimpl/ab-tests'
-description: '@nimpl/ab-tests configuration to start A/B testing in next.js application'
-previewName: ab-tests-configuration
+title: 'ab-tests docs | nimpl'
+description: "@nimpl/ab-tests - a package for conducting A/B tests on a website using middleware. The package's API is inspired by the familiar APIs from next.js"
+previewName: ab-tests-docs
 ---
 
-# Configuration
+import PackageLinks from '@/components/PackageLinks'
+
+# @nimpl/ab-tests
+
+<PackageLinks npmName="@nimpl/ab-tests" githubName="nimpl-ab-tests" />
+
+A package for conducting A/B tests on a website using middleware. The package's API is inspired by the familiar APIs from next.js.
+
+## Installation
+
+**Using npm:**
+```sh npm2yarn copy
+npm i @nimpl/ab-tests
+```
+
+## How does this work
+
+1. The middleware will find a suitable test for which the request will match the given instructions.
+
+1. If the test is found, a `nimpl_ab` cookie will be added with a session lifetime (*if `cookieLifeTime` is set - with a lifetime specified in this option*).
+
+1. Upon repeated requests, it will be checked whether the user still matches the test that was previously passed (*considering the `ignoreOnNextRequests` option*).
+If yes - the user will see the previously dropped version, otherwise - will try to participate in other tests.
+
+**Important**
+
+If `cookieLifeTime` is not set - the user may not stop being a participant in the A/B test after closing the tab or browser.
+
+*A session may not end even after closing the browser and rebooting the system, depending on the browser and its settings.*
+
+## Configuration
 
 To start A/B testing, you need to create middleware by calling the createMiddleware function.
 
@@ -34,22 +64,7 @@ const tests: Test[] = [
 export const middleware = createMiddleware({ tests, cookieLifeTime: 72400 });
 ```
 
-## How does this work
-
-1. The middleware will find a suitable test for which the request will match the given instructions.
-
-1. If the test is found, a `nimpl_ab` cookie will be added with a session lifetime (*if `cookieLifeTime` is set - with a lifetime specified in this option*).
-
-1. Upon repeated requests, it will be checked whether the user still matches the test that was previously passed (*considering the `ignoreOnNextRequests` option*).
-If yes - the user will see the previously dropped version, otherwise - will try to participate in other tests.
-
-**Important**
-
-If `cookieLifeTime` is not set - the user may not stop being a participant in the A/B test after closing the tab or browser.
-
-*A session may not end even after closing the browser and rebooting the system, depending on the browser and its settings.*
-
-## Test description
+### Test options
 
 Each test is described by the following keys:
 
@@ -57,13 +72,13 @@ Each test is described by the following keys:
 
 `source` - the path the test will follow;
 
-`has` - array of rules that should be fulfilled for the user's request (*more about [rule description](#rule-description)*);
+`has` - array of rules that should be fulfilled for the user's request (*more about [rule options](#rule-options)*);
 
-`missing` - array of rules that *should not* be fulfilled for the user's request (*more about [rule description](#rule-description)*);
+`missing` - array of rules that *should not* be fulfilled for the user's request (*more about [rule options](#rule-options)*);
 
 `variants` - array of possible variants of the current test (*more about [variants](#variant)*).
 
-## Rule description
+### Rule options
 
 The user's request data are checked in accordance with the rules. The principles of the rules are similar to the rules of next.js.
 
@@ -77,7 +92,7 @@ Each rule may contain the following keys:
 
 `ignoreOnNextRequests` - ignore the rule when the test participant repeats the visit to the test page.
 
-## Variant
+### Variant
 
 The test can have as many options as you like. The main condition is that the total probability of the options falling out should not exceed 1.
 
@@ -122,3 +137,13 @@ Dynamic data can be obtained from `source` or from `value` of the rules. Then th
   ],
 }
 ```
+
+## Development
+
+Read about working on the package and making changes on the [contribution page](/contribution)
+
+## Additional
+
+Please consider giving a star if you like it, it shows that the package is useful and helps continue work on this and other packages.
+
+Create issues with wishes, ideas, difficulties, etc. All of them will definitely be considered and thought over.

@@ -88,17 +88,83 @@ const config = {
   "---": {
     "type": "separator"
   },
-  "getters": "getters",
-  "i18n": "i18n",
-  "classnames-minifier": "classnames-minifier",
-  "middleware-chain": "middleware-chain",
-  "router": "router",
-  "config": "config",
-  "context": "context",
-  "ab-tests": "ab-tests",
-  "cache-adapter": "cache-adapter",
-  "cache-in-memory": "cache-in-memory",
-  "contribution": "Contribution",
+  "getters": {
+    title: "getters",
+    "theme": {
+      "breadcrumb": false,
+      "sidebar": false,
+    }
+  },
+  "i18n": {
+    title: "i18n",
+    "theme": {
+      "breadcrumb": false,
+      "sidebar": false,
+    }
+  },
+  "classnames-minifier": {
+    title: "classnames-minifier",
+    "theme": {
+      "breadcrumb": false,
+      "sidebar": false,
+    }
+  },
+  "middleware-chain": {
+    title: "middleware-chain",
+    "theme": {
+      "breadcrumb": false,
+      "sidebar": false,
+    }
+  },
+  "router": {
+    title: "router",
+    "theme": {
+      "breadcrumb": false,
+      "sidebar": false,
+    }
+  },
+  "config": {
+    title: "config",
+    "theme": {
+      "breadcrumb": false,
+      "sidebar": false,
+    }
+  },
+  "context": {
+    title: "context",
+    "theme": {
+      "breadcrumb": false,
+      "sidebar": false,
+    }
+  },
+  "ab-tests": {
+    title: "ab-tests",
+    "theme": {
+      "breadcrumb": false,
+      "sidebar": false,
+    }
+  },
+  "cache-adapter": {
+    title: "cache-adapter",
+    "theme": {
+      "breadcrumb": false,
+      "sidebar": false,
+    }
+  },
+  "cache-in-memory": {
+    title: "cache-in-memory",
+    "theme": {
+      "breadcrumb": false,
+      "sidebar": false,
+    }
+  },
+  "contribution": {
+    title: "Contribution",
+    "theme": {
+      "breadcrumb": false,
+      "sidebar": false,
+    }
+  },
   "404": {
     "type": "page",
     "display": "hidden",

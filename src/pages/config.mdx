@@ -1,0 +1,262 @@
+---
+title: 'config docs | nimpl'
+description: '@nimpl/config package adding support for configuration for each possible next.js environment (build, server, client, and edge)'
+previewName: config-docs
+---
+
+import PackageLinks from '@/components/PackageLinks'
+import Hint from '@/components/Hint'
+
+# @nimpl/config
+
+<PackageLinks npmName="@nimpl/config" githubName="nimpl-config" />
+
+(Former [next-impl-config](https://www.npmjs.com/package/next-impl-config))
+
+The package adding support for configuration for each possible next.js environment (*build, server, client, and edge*)
+
+## Motivation
+
+For the config, Next.js only offers environment variables - regular ones for the server, and ones with NEXT_PUBLIC prefix, which will be embedded during the build process.
+
+And here are a few downsides:
+
+- It's not convenient for large configuration objects.
+- It doesn't cover all use cases, such as runtime config and react runtime config (when the image is built once and used in different environments).
+
+On the other hand, @nimpl/config offers support for 4 different configuration options for your applications.
+
+Another important advantage of @nimpl/config is that it supports functions (*synchronous and asynchronous*) and will successfully merge their result.
+
+## Installation
+
+```sh npm2yarn copy
+npm i @nimpl/config
+```
+
+
+## Usage
+
+**server**
+
+The config is generated at runtime (based on the environment conditions at runtime).
+
+Recommended for API routes or in force-dynamic mode in server components.
+
+```jsx
+import { serverConfig } from '@nimpl/config/server-config';
+// ...
+const config = await serverConfig;
+```
+
+**build**
+
+The config is generated at build time (based on the environment conditions at build time).
+
+Recommended for components that don't depend on the runtime environment.
+
+```jsx
+import { buildConfig } from '@nimpl/config/build-config';
+// ...
+const config = buildConfig;
+```
+
+Before using this config, [additional setup](https://nimpl.tech/config#app-configuration) is required
+
+**postbuild**
+
+During the build process, configs are generated for each possible environment (based on the environment conditions at build time). Then, at runtime, the appropriate version is selected.
+
+Recommended for middleware.
+
+```jsx
+import { postbuildConfig } from '@nimpl/config/postbuild-config';
+// ...
+const config = postbuildConfig;
+```
+
+Before using this config, [additional setup](https://nimpl.tech/config#app-configuration) is required
+
+**runtime**
+
+An API route is created that generates the config at the time of the request (based on the environment conditions at runtime). Then, on the client side, a provider is initialized that loads the config and returns it after loading (triggering a re-render).
+
+Recommended for components that depend on the runtime environment.
+
+```jsx
+'client';
+
+import useRuntimeConfig from '@nimpl/config/use-runtime-config';
+// ...
+const config = useRuntimeConfig();
+
+if (!config) return <p>Loading...</p>
+// ...
+```
+
+Before using this config, [additional setup](https://nimpl.tech/config#app-configuration) is required
+
+## Structure
+
+All configs are stored in the config directory. Each variant is stored independently in a subdirectory with the same name.
+
+config
+
+- server
+- build
+- postbuild
+- runtime
+
+All types support the following config variants:
+
+- default.js
+- default.local.js
+- [TARGET_ENV].js
+- [TARGET_ENV].local.js
+- envs.js
+- envs.local.js
+
+The lower the config variant is in the list, the higher its priority.
+
+- default.js: Used as the default value, all config keys should be filled in this file.
+- [TARGET_ENV].js: Environment-dependent config (see [environment-dependent config](/config#environment-dependent-config)).
+- envs.js: Config with environment variables as values.
+- .local.js versions: Local versions that should be added to gitignore.
+
+## Package configuration
+
+### Environment-dependent config
+
+The default Environment-dependent config is the config for the current `NODE_ENV` or `NIMPL_CONFIG_ENV`. If you want to use a config for specific env, pass it to `nimplConfig`
+
+```js filename="next.config.js"
+const { default: nimplConfig } = require('@nimpl/config/with-nimpl-config');
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // ...
+};
+
+module.exports = nimplConfig({ envs: ['development', 'staging', 'production'], targetEnv: 'development' })(nextConfig);
+```
+
+### Custom config folder
+
+```js filename="next.config.js"
+const { default: nimplConfig } = require('@nimpl/config/with-nimpl-config');
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // ...
+};
+
+module.exports = nimplConfig({ folder: 'custom-config-folder' })(nextConfig);
+```
+
+### Typescript
+
+When the application runs, the package will create a file with type declarations - `nimpl-config.d.ts`.
+
+After this, each config variant will be typed exactly in accordance with the default config.
+
+You can also create this file manually:
+
+```ts filename="nimpl-config.d.ts"
+// NOTE: This file should not be edited
+// see https://nimpl.tech/config/configuration#typescript for more information.
+
+declare module "@nimpl/config/use-runtime-config" {
+    declare const useRuntimeConfig: () => typeof import('./config/runtime/default');
+    export default useRuntimeConfig;
+}
+
+declare module "@nimpl/config/build-config" {
+    export declare const buildConfig: typeof import('./config/build/default');
+}
+
+declare module "@nimpl/config/postbuild-config" {
+    export declare const postbuildConfig: typeof import('./config/postbuild/default');
+}
+
+declare module "@nimpl/config/server-config" {
+    export declare const serverConfig: Promise<typeof import('./config/server/default')>;
+}
+```
+
+## App configuration
+
+**server**
+
+This type doesn't require any additional configuration.
+
+**build**
+
+Next.js config needs to be wrapped with `nimplConfig`.
+
+```jsx filename="next.config.js"
+const { default: nimplConfig } = require('@nimpl/config/with-nimpl-config');
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // ...
+};
+
+module.exports = nimplConfig()(nextConfig);
+```
+
+**postbuild**
+
+Possible environments need to be passed to `nimplConfig`.
+
+```js filename="next.config.js"
+const { default: nimplConfig } = require('@nimpl/config/with-nimpl-config');
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // ...
+};
+
+module.exports = nimplConfig({ envs: ['development', 'staging', 'production'] })(nextConfig);
+```
+
+**runtime**
+
+First, create an API route.
+
+```jsx filename="app/api/config/route.tsx"
+export { runtimeConfigApi as GET } from '@nimpl/config/runtime-config-api';
+
+export const dynamic = 'force-dynamic';
+```
+
+<Hint>
+It is important to specify `force-dynamic`, otherwise next.js will compile this API route as static and it will not provide actual data for the environment
+</Hint>
+
+Wrap the application with the Provider.
+
+```jsx filename="app/layout.tsx"
+import RuntimeConfigProvider from '@nimpl/config/runtime-config-provider';
+
+export default function RootLayout() {
+  return (
+    <RuntimeConfigProvider apiPath='/api/config'>
+      // ...
+    </RuntimeConfigProvider>
+  );
+}
+```
+
+## Examples
+
+[Base example](https://github.com/vordgi/nimpl-config/tree/main/example).
+
+## Development
+
+Read about working on the package and making changes on the [contribution page](/contribution)
+
+## Additional
+
+Please consider giving a star if you like it, it shows that the package is useful and helps continue work on this and other packages.
+
+Create issues with wishes, ideas, difficulties, etc. All of them will definitely be considered and thought over.

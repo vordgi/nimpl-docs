@@ -1,17 +1,23 @@
-// @ts-check
-// @ts-ignore
 import nextra from 'nextra';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
     transpilePackages: ['geist/font/sans', 'next/font'],
-    webpack: (config) => {
-        config.resolve.fallback = {
-            "child_process": false,
-        }
-        return config;
-    },
+    async redirects() {
+        return [
+            {
+                source: '/:name(getters|i18n|ab-tests|cache-adapter|cache-in-memory|classnames-minifier|config|context|middleware-chain|router)/:path',
+                destination: '/:name',
+                statusCode: 307,
+            },
+            {
+                source: '/:name(getters|i18n|ab-tests|cache-adapter|cache-in-memory|classnames-minifier|config|context|middleware-chain|router)/:path1/:path2',
+                destination: '/:name',
+                statusCode: 307,
+            }
+        ]
+    }
 };
 
 const withNextra = nextra({
