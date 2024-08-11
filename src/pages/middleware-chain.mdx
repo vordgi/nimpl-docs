@@ -5,6 +5,7 @@ previewName: middleware-chain-docs
 ---
 
 import PackageLinks from '@/components/PackageLinks'
+import Hint from '@/components/Hint'
 
 # @nimpl/middleware-chain
 
@@ -139,6 +140,51 @@ export default chain([
     authMiddleware,
 ]);
 ```
+
+## Configuration
+
+### Custom logger
+
+By default, the package logs every change during the chain execution.
+This is important for understanding unnecessary changes or tracking the request processing.
+
+You can modify this behavior by passing an object with the `logger` option as the second argument to the chain:
+
+```ts
+export default chain(
+    [
+        intlMiddleware,
+        authMiddleware,
+    ],
+    {
+        logger: Logger,
+    }
+);
+```
+
+To completely disable the package's internal logs, pass `logger: null` or `logger: false`.
+
+You can also pass a custom logger:
+
+```ts
+export default chain(
+    [
+        intlMiddleware,
+        authMiddleware,
+    ],
+    {
+        logger: {
+            log: (msg) => console.log(`product-middleware-chain: ${msg}`),
+            warn: (msg) => console.warn(`product-middleware-chain: ${msg}`),
+            error: (msg) => console.error(`product-middleware-chain: ${msg}`),
+        },,
+    }
+);
+```
+
+<Hint>
+The option does not change the internal logs of chain elements, but only works for the package's internal logs (e.g. `Changing destination between middlewares...`)
+</Hint>
 
 ## Examples
 
