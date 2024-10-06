@@ -4,22 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "generate-previews": "node src/tools/generate-previews",
-    "build": "pnpm generate-previews && next build && next-sitemap",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky"
   },
   "dependencies": {
-    "@resvg/resvg-js": "^2.6.2",
     "@vercel/analytics": "^1.2.2",
     "glob": "10.3.16",
+    "match-sorter": "6.3.4",
     "next": "14.1.4",
-    "next-sitemap": "4.2.3",
-    "nextra": "3.0.0-alpha.24",
-    "nextra-theme-docs": "3.0.0-alpha.24",
     "react": "^18",
     "react-dom": "^18",
+    "robindoc": "1.1.4",
     "sass": "^1.74.1"
   },
   "devDependencies": {
