@@ -1,0 +1,134 @@
+---
+title: 'cache-adapter docs | nimpl'
+description: 'An adapter that allows you to use any cache handler on the client and server side and switch between them. Adds support for running next.js applications in multiple instances'
+previewName: cache-adapter-docs
+---
+
+# @nimpl/cache-adapter
+
+<PackageLinks npmName="@nimpl/cache-adapter" githubName="nimpl-cache" />
+
+(Former [next-impl-cache-adapter](https://www.npmjs.com/package/next-impl-cache-adapter))
+
+An adapter that allows you to use any cache handler on the client and server side and switch between them. Adds support for running next.js applications in multiple instances.
+
+## Advantages
+
+* Shared cache between different instances (replicas, copies) of the application.
+* Three caching options: local, remote and isomorphic.
+* Same cacheHandler on the client and on the created server.
+* Caching without server restart.
+* Clearing of outdated cache.
+
+## Installation
+
+**Using npm:**
+```sh npm2yarn copy
+npm i @nimpl/cache-adapter
+```
+
+## How it works
+
+For a common cache between instances (replicas, copies) - the cache should be separate from each application instance. This solution does it by creating a separate service.
+
+The application can then work with the cache through this remote server. The server acts as a cacheHandler and can be used from the running application and/or from the build mode.
+
+The server does not need to be restarted each time. And outdated data will be deleted automatically when launching a new version of the application.
+
+## Usage
+
+The server is launched, to which the required cacheHandler is passed:
+
+```js
+// @ts-check
+const { createServer } = require('@nimpl/cache-adapter');
+const CacheHandler = require('@nimpl/cache-in-memory');
+
+const server = createServer(new CacheHandler({}));
+
+server.listen('4000', () => {
+    console.log('Server is running at http://localhost:4000');
+});
+```
+
+A special adapter is set up to work with the cache:
+
+```js filename="cache-handler.js"
+// @ts-check
+const { AppAdapter } = require('@nimpl/cache-adapter');
+const CacheHandler = require('@nimpl/cache-in-memory');
+
+class CustomCacheHandler extends AppAdapter {
+    /** @param {any} options */
+    constructor(options) {
+        super({
+            CacheHandler,
+            buildId: process.env.BUILD_ID || 'base_id',
+            cacheUrl: 'http://localhost:4000',
+            cacheMode: 'remote',
+            options,
+        })
+    }
+}
+
+module.exports = CustomCacheHandler;
+```
+
+The created cache-handler is connected in the next.js configuration:
+
+```js filename="next.config.js"
+module.exports = {
+  cacheHandler: require.resolve('./cache-handler.js'),
+  cacheMaxMemorySize: 0, // disable default in-memory caching
+}
+```
+
+That's it. Now the cache is configured.
+
+## Configuration
+
+### CacheHandler
+
+CacheHandler, which will be responsible for the logic of caching.
+
+### buildId
+
+A unique id of the current build. It should be same between instances. When launching an application with a new id, the cache for old ids will be deleted.
+
+### cacheUrl
+
+A url where the remote cache is running.
+
+### cacheMode
+
+The package supports three caching modes: `local`, `remote` and `isomorphic`.
+
+**local**
+
+A standard solution, the cache is processed next to the application. Convenient to use in development mode and on stages where the application is run in a single instance.
+
+**remote**
+
+All cache will be written and read on a remote server, launched earlier. Convenient to use for applications running in multiple replicas.
+
+**isomorphic**
+
+The cache operates next to the application, but additionally stores data on a remote server. Convenient to use during the build, to prepare the cache by the time the application instances are launched, but without spending resources on loading the cache from a remote server.
+
+### options
+
+Options passed to `cacheHandler` from **next.js**. They just need to be passed from the argument.
+
+## Examples
+
+Base example with [@nimpl/cache-in-memory](https://nimpl.tech/cache-in-memory). [See example](https://github.com/vordgi/nimpl-cache/tree/main/example).
+
+## Development
+
+Read about working on the package and making changes on the [contribution page](./contribution.mdx)
+
+## Additional
+
+Please consider giving a star if you like it, it shows that the package is useful and helps continue work on this and other packages.
+
+Create issues with wishes, ideas, difficulties, etc. All of them will definitely be considered and thought over.

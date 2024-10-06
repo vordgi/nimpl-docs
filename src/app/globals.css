@@ -1,0 +1,11 @@
+.theme-light {
+    --color-base-0: 250 250 250;
+    --color-dye-pink: 210 0 98;
+    --color-dye-blue: 83 86 255;
+}
+
+.theme-dark {
+    --color-base-0: 17 17 17;
+    --color-dye-pink: 240 35 130;
+    --color-dye-blue: 83 86 255;
+}

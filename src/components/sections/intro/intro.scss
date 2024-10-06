@@ -1,0 +1,108 @@
+@import "src/assets/_vars";
+
+.intro-container {
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-inline: auto;
+
+  @media screen and (width >= $sm) {
+    padding-top: 128px;
+    padding-bottom: 128px;
+    text-align: center;
+  }
+
+  @media screen and (width >= $lg) {
+    padding-top: 240px;
+    padding-bottom: 240px;
+  }
+}
+
+.intro-heaging {
+  margin-top: 0;
+  font-size: 32px;
+  font-weight: 800;
+
+  @media screen and (width >= $lg) {
+    font-size: 60px;
+  }
+}
+
+.intro-subheaging {
+  font-size: 20px;
+  font-weight: 300;
+
+  @media screen and (width >= $lg) {
+    font-size: 24px;
+  }
+}
+
+.intro-text-dye-blue {
+  color: rgb(var(--color-dye-blue));
+}
+
+.intro-text-dye-pink {
+  color: rgb(var(--color-dye-pink));
+}
+
+.intro-actions {
+  display: grid;
+  margin-top: 64px;
+  gap: 16px;
+  font-weight: 600;
+
+  @media screen and (width >= $sm) {
+    grid-auto-flow: column;
+    justify-content: center;
+  }
+}
+
+.intro-button {
+  position: relative;
+  display: block;
+  padding: 2px;
+  text-align: center;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 2px solid rgb(var(--color-dye-blue));
+  background: var(--body);
+  color: inherit;
+  padding: 12px 32px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.intro-button_secondary {
+  border: 2px solid var(--neutral700);
+
+  &:hover {
+    border-color: var(--neutral950);
+  }
+}
+
+.intro-bg {
+  display: none;
+  position: absolute;
+  color: var(--neutral100);
+  height: 100%;
+  width: 85%;
+  z-index: -10;
+  opacity: 0.5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media screen and (width >= $sm) {
+    display: block;
+  }
+}
+
+.intro-circle {
+  transition: opacity 0.5s;
+}
+
+.intro-circle-hidden {
+  opacity: 0;
+}
