@@ -13,7 +13,7 @@
     "@vercel/analytics": "^1.2.2",
     "glob": "10.3.16",
     "match-sorter": "6.3.4",
-    "next": "14.1.4",
+    "next": "14.2.14",
     "react": "^18",
     "react-dom": "^18",
     "robindoc": "1.1.4",
