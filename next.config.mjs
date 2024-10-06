@@ -11,6 +11,11 @@ const nextConfig = {
                 statusCode: 307,
             },
         ]
+    },
+    experimental: {
+        outputFileTracingIncludes: {
+            '/api/search': ['./docs/**/*', './blog/**/*', './README.md'],
+        },
     }
 };
 
