@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Header, Footer, RobinProvider, KeylinkToContent } from 'robindoc';
 import Link from "next/link";
+import { Analytics } from '@vercel/analytics/react';
 
 import { Logo } from "../components/ui/logo";
 
@@ -43,6 +44,7 @@ export default function RootLayout({
                         {children}
                     <Footer copyright="© 2024 All rights reserved" />
                 </RobinProvider>
+                <Analytics />
             </body>
         </html>
     );
