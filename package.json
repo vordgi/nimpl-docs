@@ -16,7 +16,7 @@
     "next": "14.2.14",
     "react": "^18",
     "react-dom": "^18",
-    "robindoc": "1.1.6",
+    "robindoc": "1.1.7",
     "sass": "^1.74.1"
   },
   "devDependencies": {
