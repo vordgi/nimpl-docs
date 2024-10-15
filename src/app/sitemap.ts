@@ -1,7 +1,7 @@
 import { type MetadataRoute } from 'next';
-import { getPages as getDocsPages } from './docs/[[...path]]/robindoc';
-import { getPages as getBlogPages } from './blog/[[...path]]/robindoc';
-import { getPages as getContributionPages } from './contribution/[[...path]]/robindoc';
+import { getPages as getDocsPages } from './docs/robindoc';
+import { getPages as getBlogPages } from './blog/robindoc';
+import { getPages as getContributionPages } from './contribution/robindoc';
  
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pagesLists = await Promise.all([getDocsPages(), getBlogPages(), getContributionPages()]);
