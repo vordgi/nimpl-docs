@@ -1,7 +1,4 @@
-import Link from "next/link";
-import { KeylinkToNavigation } from "robindoc";
-
-import { Page, Sidebar, getMeta, getPages } from "./robindoc";
+import { Page, getMeta, getPages } from "../robindoc";
 import { Hint } from "../../../components/ui/hint";
 import { PackageLinks } from "../../../components/ui/package-links";
 
@@ -9,21 +6,16 @@ const DocsPage = ({ params }: { params: { path?: string[] } }) => {
     const path = '/docs/' + (params.path?.join('/') || '');
 
     return (
-        <>
-            <Sidebar pathname={path} link={Link} />
-            <Page
-                pathname={path}
-                link={Link}
-                components={{
-                    Hint,
-                    PackageLinks,
-                }}
-                config={{
-                    publicDirs: ['public']
-                }}
-            />
-            <KeylinkToNavigation />
-        </>
+        <Page
+            pathname={path}
+            components={{
+                Hint,
+                PackageLinks,
+            }}
+            config={{
+                publicDirs: ['public']
+            }}
+        />
     );
 }
 

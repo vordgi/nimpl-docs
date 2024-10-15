@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { Main } from 'robindoc';
+import { Main, KeylinkToNavigation } from "robindoc";
+
+import { Sidebar } from "./robindoc";
 
 export const metadata: Metadata = {
     title: {
@@ -14,7 +16,9 @@ export default function RootLayout({
 }: Readonly<{ children?: JSX.Element }>) {
     return (
         <Main>
+            <Sidebar />
             {children}
+            <KeylinkToNavigation />
         </Main>
     );
 }

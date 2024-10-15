@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Header, Footer, RobinProvider, KeylinkToContent } from 'robindoc';
-import Link from "next/link";
 import { Analytics } from '@vercel/analytics/react';
 
 import { Logo } from "../components/ui/logo";
@@ -36,7 +35,6 @@ export default function RootLayout({
                             { href: '/blog', title: 'Blog' },
                             { href: '/contribution', title: 'Contribution' },
                         ]}
-                        link={Link}
                         logo={<Logo />}
                         git="https://github.com/vordgi/nimpl-docs"
                         searcher="/api/search"
