@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Main } from 'robindoc';
+import { BlogContainer } from 'robindoc';
 
 export const metadata: Metadata = {
     title: {
@@ -13,8 +13,8 @@ export default function RootLayout({
     children,
 }: Readonly<{ children?: JSX.Element }>) {
     return (
-        <Main>
+        <BlogContainer>
             {children}
-        </Main>
+        </BlogContainer>
     );
 }
