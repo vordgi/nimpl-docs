@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Main, KeylinkToNavigation } from "robindoc";
+import { DocsContainer, KeylinkToNavigation } from "robindoc";
 
 import { Sidebar } from "./robindoc";
 
@@ -15,10 +15,10 @@ export default function RootLayout({
     children,
 }: Readonly<{ children?: JSX.Element }>) {
     return (
-        <Main>
+        <DocsContainer>
             <Sidebar />
             {children}
             <KeylinkToNavigation />
-        </Main>
+        </DocsContainer>
     );
 }
