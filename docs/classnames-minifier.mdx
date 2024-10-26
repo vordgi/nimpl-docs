@@ -29,33 +29,69 @@ npm i @nimpl/classnames-minifier
 const { default: classnamesMinifier } = require('@nimpl/classnames-minifier');
 const { PHASE_PRODUCTION_SERVER, PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 
-module.exports = (phase) => classnamesMinifier({
+const withClassnamesMinifier = classnamesMinifier({
   prefix: '_',
   reservedNames: ['_en', '_de'],
-  disabled: phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_SERVER,
-})(nextConfig);
+  disabled: process.env.NODE_ENV === 'development',
+})
+
+module.exports = withClassnamesMinifier(nextConfig);
 ```
 
-*It is recommended to disable minification for development and for app startup after assembly - this way you will avoid unnecessary loads and possible cache deletions when starting the app.*
+The package automatically checks all classes and settings before the next.js application is fully launched. This allows for greater stability. But it takes a little time.
+
+At the same time, at the package level it is impossible to automatically determine whether the assembly is currently running or whether it is launching the entire application. Therefore, it is recommended to disable the package for the application startup phase:
+
+```js filename="next.config.js"
+const { default: classnamesMinifier } = require('@nimpl/classnames-minifier');
+const { PHASE_PRODUCTION_SERVER, PHASE_DEVELOPMENT_SERVER } = require('next/constants');
+
+module.exports = (phase) => {
+  const withClassnamesMinifier = classnamesMinifier({
+    disabled: phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_SERVER,
+  });
+
+  return withClassnamesMinifier(nextConfig);
+};
+```
 
 ### Options
 
-* `prefix` - custom prefix that will be added to each updated class;
-* `reservedNames` - array of reserved names that should not be used by this package (must include prefix);
-* `disabled` - disabling classnames minifying;
-* `disableDistDeletion` - option that allows you to disable the automatic deletion of the dist folder if necessary (*f.e. differences in package setup in cache and now or first launch*);
+* `prefix` - Prefix which will be added to each generated name;
+* `reservedNames` - Reserved minified names. Use this option if you are adding short classes manually (_must include prefix_);
+* `disabled` - Disable classnames minifying;
+* `distDeletionPolicy` - Package policy to resolve potential problems with minified classes;
+* `experimental.syncFreedNames` - Automatically synchronize freed classes (_for example, if you deleted the original styles_)
+Such classes will be reused in new locations. In this case, there may be situations that the package
+will mistakenly consider them freed and reuse the class again, thereby creating duplicates.
 
-## Working with cache
+Be careful using this option;
+* `experimental.freedNamesLimit` - Limit of unused minified classes. Such classes are not reused by default,
+since the package cannot be sure of this at this time.
 
-Next.js has a very complex caching system. It caches processed files and doesn't rebuild them during next builds, but takes them from the cache.
+## Dist Deletion Policy
 
-However, when the package config changes - all these files need to be rebuilt. Without this, there will be critically many artifacts at the intersection of names or unexpected use of previous names.
+Package policy to resolve potential problems with minified classes;
 
-For this reason, with critical changes in the package configuration, the entire application data will be deleted.
+This may happen due to the following reasons:
+
+1. Launching the package for the first time. Package need clean next.js cache to put everything in the correct order
+2. Changing the package configuration. Package need clean next.js cache to rebuild it with classes according to the new rules
+3. Exceeding the limit on freed classes (these are classes that were used before, but are now *probably* no longer used)
+
+**Options**:
+
+`"warning"` - a warning message will simply be displayed.
+With this option, there is a high risk of errors and duplicates of generated classes.
+
+`"error"` [_default_] - an error will be thrown, and as a result the build will stop.
+If this option occurs, delete the next.js cache manually and restart the build.
+
+`"auto"` - the package will automatically delete the next.js cache directory.
 
 ## Development
 
-Read about working on the package and making changes on the [contribution page](./contribution.mdx)
+Read about working on the package and making changes on the [contribution page](/contribution)
 
 ## Additional
 
