@@ -32,6 +32,10 @@ export const { Page, Sidebar, getPages, getMeta, getPageContent, getPageData } =
             href: '/context',
         },
         {
+            title: 'Path Parser',
+            href: '/path-parser',
+        },
+        {
             title: 'Configuration Implementations',
             type: 'heading',
         },

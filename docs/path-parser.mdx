@@ -1,0 +1,51 @@
+---
+title: 'path-parser docs'
+description: "Helper for next.js-styled pathname parsing (f.e. /(site)/docs/[key]) to get dynamic params"
+---
+
+# @nimpl/path-parser
+
+<PackageLinks npmName="@nimpl/path-parser" githubName="nimpl-path-parser" />
+
+Helper for next.js-styled pathname parsing (f.e. `/(site)/docs/[key]`) to get dynamic params.
+
+## Installation
+
+```bash switcher tab="npm"
+npm i @nimpl/path-parser
+```
+
+```bash switcher tab="yarn"
+yarn add @nimpl/path-parser
+```
+
+## Usage
+
+```ts
+import { parse } from "@nimpl/path-parser";
+
+// ...
+
+const params = parse("/docs/path-parser", "/(site)/docs/[key]"); // { key: 'path-parser' }
+const { segments } = parse("/docs/path-parser", "/(site)/[[...segments]]"); // { segments: ['docs', 'path-parser'] }
+```
+
+## Arguments
+
+`pathname` - clean page pathname;
+
+`rule` - the expected rule (_same as the path to the page directory_).
+
+<Hint>
+If pathname does not match the expected rule - the parser will return `null`.
+</Hint>
+
+## Development
+
+Read about working on the package and making changes on the [contribution page](/contribution)
+
+## Additional
+
+Please consider giving a star if you like it, it shows that the package is useful and helps me continue work on this and other packages.
+
+Create issues with wishes, ideas, difficulties, etc. All of them will definitely be considered and thought over.
