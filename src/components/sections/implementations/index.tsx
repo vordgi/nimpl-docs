@@ -21,6 +21,10 @@ export const Implementations = () => (
                         <h3>@nimpl/context</h3>
                         <p>Server contexts for RSC without switching to SSR</p>
                     </Link>
+                    <Link href="/docs/path-parser" className="implementations-card">
+                        <h3>@nimpl/path-parser</h3>
+                        <p>Helper for next.js-styled pathname parsing to get dynamic params</p>
+                    </Link>
                 </div>
             </div>
             <div className="implementations-section">
