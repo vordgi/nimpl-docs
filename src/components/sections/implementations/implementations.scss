@@ -36,14 +36,14 @@
 .implementations-card {
   display: block;
   position: relative;
-  background-color: var(--neutral50);
+  background-color: var(--cl-neutral-50);
   border-radius: 12px;
   padding: 12px 32px;
   text-decoration: none;
   color: inherit;
 
   --first-color: rgb(var(--color-dye-pink));
-  --second-color: var(--neutral200);
+  --second-color: var(--cl-neutral-200);
 
   &:hover {
     --first-color: rgb(var(--color-dye-pink));

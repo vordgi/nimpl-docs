@@ -1,6 +1,6 @@
 import { initializeRobindoc } from "robindoc";
 
-export const { Page, Sidebar, getPages, getMeta, getPageContent, getPageData } = initializeRobindoc({
+export const { Page, Sidebar, getStaticParams, getMetadata } = initializeRobindoc({
     configuration: {
         sourceRoot: './docs/contribution.mdx',
         basePath: '/contribution',

@@ -2,12 +2,12 @@ import { Page, getMetadata, getStaticParams } from "../robindoc";
 import { Hint } from "../../../components/ui/hint";
 import { PackageLinks } from "../../../components/ui/package-links";
 
-const BlogPage = ({ params }: { params: { path?: string[] } }) => {
-    const path = '/blog/' + (params.path?.join('/') || '');
+const DocsPage = ({ params }: { params: { segments?: string[] } }) => {
+    const pathname = '/docs/' + (params.segments?.join('/') || '');
 
     return (
         <Page
-            pathname={path}
+            pathname={pathname}
             components={{
                 Hint,
                 PackageLinks,
@@ -15,14 +15,12 @@ const BlogPage = ({ params }: { params: { path?: string[] } }) => {
             config={{
                 publicDirs: ['public']
             }}
-            prev={undefined}
-            next={undefined}
         />
     );
 }
 
 export const generateMetadata = async ({ params }: { params: { segments?: string[] } }) => {
-    const pathname = '/blog/' + (params.segments?.join('/') || '');
+    const pathname = '/docs/' + (params.segments?.join('/') || '');
     const metadata = await getMetadata(pathname);
     return {
         ...metadata,
@@ -33,8 +31,8 @@ export const generateMetadata = async ({ params }: { params: { segments?: string
 };
 
 export const generateStaticParams = async () => {
-    const staticParams = await getStaticParams('/blog');
+    const staticParams = await getStaticParams('/docs');
     return staticParams;
 }
 
-export default BlogPage;
+export default DocsPage;

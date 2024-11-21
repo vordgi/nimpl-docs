@@ -1,6 +1,6 @@
 import { initializeRobindoc } from "robindoc";
 
-export const { Page, Sidebar, getPages, getMeta, getPageContent, getPageData } = initializeRobindoc({
+export const { Page, Sidebar, getStaticParams, getMetadata, getPageData } = initializeRobindoc({
     configuration: {
         sourceRoot: './docs',
         basePath: '/docs',

@@ -7,6 +7,7 @@ import { Logo } from "../components/ui/logo";
 
 import "robindoc/lib/styles.css";
 import "./globals.css";
+import { theme } from "./theme";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,9 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={inter.className}>
-                <RobinProvider>
+                <RobinProvider
+                    theme={theme}
+                >
                     <KeylinkToContent />
                     <Header
                         links={[
