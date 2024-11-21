@@ -65,7 +65,7 @@
   border-radius: 8px;
   text-decoration: none;
   border: 2px solid rgb(var(--color-dye-blue));
-  background: var(--body);
+  background: var(--cl-body);
   color: inherit;
   padding: 12px 32px;
 
@@ -75,17 +75,17 @@
 }
 
 .intro-button_secondary {
-  border: 2px solid var(--neutral700);
+  border: 2px solid var(--cl-neutral-700);
 
   &:hover {
-    border-color: var(--neutral950);
+    border-color: var(--cl-neutral-950);
   }
 }
 
 .intro-bg {
   display: none;
   position: absolute;
-  color: var(--neutral100);
+  color: var(--cl-neutral-100);
   height: 100%;
   width: 85%;
   z-index: -10;

@@ -1,11 +1,11 @@
 @import "src/assets/_vars";
 
 .hint {
-  background-color: var(--neutral50);
+  background-color: var(--cl-neutral-50);
   line-height: 1.8;
   padding: 12px;
   margin-block-start: 1rem;
   margin-block-end: 1rem;
-  border: 1px solid var(--neutral300);
+  border: 1px solid var(--cl-neutral-300);
   border-radius: 6px;
 }

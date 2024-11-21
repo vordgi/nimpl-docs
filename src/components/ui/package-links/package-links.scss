@@ -16,7 +16,7 @@
 .package-links-link-inner {
   display: block;
   padding: 4px 12px;
-  background-color: var(--body);
+  background-color: var(--cl-body);
   border-radius: 4px;
 }
 
@@ -25,5 +25,5 @@
 }
 
 .package-links-link-github {
-  background: var(--neutral800);
+  background: var(--cl-neutral-800);
 }

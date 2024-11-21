@@ -34,7 +34,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--neutral50);
+  background-color: var(--cl-neutral-50);
   border-radius: 12px;
   padding: 32px;
   height: 192px;
@@ -85,7 +85,7 @@
 }
 
 .features-dot-neutral {
-  background-color: var(--neutral500);
+  background-color: var(--cl-neutral-500);
 }
 
 .features-dot-small {
@@ -289,43 +289,43 @@
 @keyframes features-2-dot-2-anim {
   0% {
     border-radius: 4px 12px 6px 8px / 8px 4px 10px 14px;
-    background-color: var(--neutral400);
+    background-color: var(--cl-neutral-400);
   }
   10% {
     border-radius: 8px 16px 10px 6px / 14px 6px 12px 8px;
-    background-color: var(--neutral600);
+    background-color: var(--cl-neutral-600);
   }
   20% {
     border-radius: 14px 6px 12px 16px / 10px 12px 4px 12px;
   }
   30% {
     border-radius: 6px 6px 8px 10px / 16px 4px 6px 16px;
-    background-color: var(--neutral400);
+    background-color: var(--cl-neutral-400);
   }
   40% {
     border-radius: 16px 14px 12px 16px / 6px 14px 16px 6px;
   }
   50% {
     border-radius: 12px 8px 6px 10px / 10px 6px 8px 16px;
-    background-color: var(--neutral600);
+    background-color: var(--cl-neutral-600);
   }
   60% {
     border-radius: 16px 14px 12px 16px / 6px 14px 16px 6px;
   }
   70% {
     border-radius: 6px 6px 8px 10px / 16px 4px 6px 16px;
-    background-color: var(--neutral400);
+    background-color: var(--cl-neutral-400);
   }
   80% {
     border-radius: 14px 6px 12px 16px / 10px 12px 4px 12px;
   }
   90% {
     border-radius: 8px 16px 10px 6px / 14px 6px 12px 8px;
-    background-color: var(--neutral600);
+    background-color: var(--cl-neutral-600);
   }
   100% {
     border-radius: 4px 12px 6px 8px / 8px 4px 10px 14px;
-    background-color: var(--neutral400);
+    background-color: var(--cl-neutral-400);
   }
 }
 
@@ -349,7 +349,7 @@
 .features-3-line-anim {
   background: linear-gradient(
     90deg,
-    var(--neutral300),
+    var(--cl-neutral-300),
     rgb(var(--color-dye-pink))
   );
   background-size: 200% 200%;
@@ -464,7 +464,7 @@
   }
   50% {
     left: 50%;
-    background-color: var(--neutral500);
+    background-color: var(--cl-neutral-500);
     transform: translateX(0);
   }
   51% {

@@ -1,25 +1,51 @@
 :root {
-    --accent50: #eff6ff;
-    --accent100: #dbeafe;
-    --accent200: #bfdbfe;
-    --accent300: #93c5fd;
-    --accent400: #60a5fa;
-    --accent500: #3b82f6;
-    --accent600: #2563eb;
-    --accent700: #1d4ed8;
-    --accent800: #1e40af;
-    --accent900: #1e3a8a;
-    --accent950: #172554;
+  --base-neutral-50: #f8fafc;
+  --base-neutral-100: #f1f5f9;
+  --base-neutral-200: #e2e8f0;
+  --base-neutral-300: #cbd5e1;
+  --base-neutral-400: #94a3b8;
+  --base-neutral-500: #64748b;
+  --base-neutral-600: #475569;
+  --base-neutral-700: #334155;
+  --base-neutral-800: #1e293b;
+  --base-neutral-900: #0f172a;
+  --base-neutral-950: #020617;
+  --base-body-50: #ffffff;
+  --base-body-950: #00020a;
 }
 
 .theme-light {
-    --color-base-0: 250 250 250;
-    --color-dye-pink: 210 0 98;
-    --color-dye-blue: 83 86 255;
+  --color-base-0: 250 250 250;
+  --color-dye-pink: 210 0 98;
+  --color-dye-blue: 83 86 255;
+  --cl-neutral-50: var(--base-neutral-50, #f8fafc);
+  --cl-neutral-100: var(--base-neutral-100, #f1f5f9);
+  --cl-neutral-200: var(--base-neutral-200, #e2e8f0);
+  --cl-neutral-300: var(--base-neutral-300, #cbd5e1);
+  --cl-neutral-400: var(--base-neutral-400, #94a3b8);
+  --cl-neutral-500: var(--base-neutral-500, #64748b);
+  --cl-neutral-600: var(--base-neutral-600, #475569);
+  --cl-neutral-700: var(--base-neutral-700, #334155);
+  --cl-neutral-800: var(--base-neutral-800, #1e293b);
+  --cl-neutral-900: var(--base-neutral-900, #0f172a);
+  --cl-neutral-950: var(--base-neutral-950, #020617);
+  --cl-body: var(--base-body-50);
 }
 
 .theme-dark {
-    --color-base-0: 17 17 17;
-    --color-dye-pink: 240 35 130;
-    --color-dye-blue: 83 86 255;
+  --color-base-0: 17 17 17;
+  --color-dye-pink: 240 35 130;
+  --color-dye-blue: 83 86 255;
+  --cl-neutral-50: var(--base-neutral-950, #020617);
+  --cl-neutral-100: var(--base-neutral-900, #0f172a);
+  --cl-neutral-200: var(--base-neutral-800, #1e293b);
+  --cl-neutral-300: var(--base-neutral-700, #334155);
+  --cl-neutral-400: var(--base-neutral-600, #475569);
+  --cl-neutral-500: var(--base-neutral-500, #64748b);
+  --cl-neutral-600: var(--base-neutral-400, #94a3b8);
+  --cl-neutral-700: var(--base-neutral-300, #cbd5e1);
+  --cl-neutral-800: var(--base-neutral-200, #e2e8f0);
+  --cl-neutral-900: var(--base-neutral-100, #f1f5f9);
+  --cl-neutral-950: var(--base-neutral-50, #f8fafc);
+  --cl-body: var(--base-body-950);
 }
