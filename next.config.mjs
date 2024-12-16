@@ -8,7 +8,7 @@ const nextConfig = {
             {
                 source: '/:name(getters|i18n|ab-tests|cache-adapter|cache-in-memory|classnames-minifier|config|context|middleware-chain|router)/:path*',
                 destination: '/docs/:name',
-                statusCode: 307,
+                statusCode: 308,
             },
         ]
     },
