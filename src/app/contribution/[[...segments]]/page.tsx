@@ -2,12 +2,12 @@ import { Page, getMetadata, getStaticParams } from "../robindoc";
 import { Hint } from "../../../components/ui/hint";
 import { PackageLinks } from "../../../components/ui/package-links";
 
-const ContributionPage = ({ params }: { params: { path?: string[] } }) => {
-    const path = '/contribution/' + (params.path?.join('/') || '');
+const ContributionPage = ({ params }: { params: { segments?: string[] } }) => {
+    const pathname = '/contribution/' + (params.segments?.join('/') || '');
 
     return (
         <Page
-            pathname={path}
+            pathname={pathname}
             components={{
                 Hint,
                 PackageLinks,
