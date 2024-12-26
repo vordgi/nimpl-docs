@@ -2,12 +2,12 @@ import { Page, getMetadata, getStaticParams } from "../robindoc";
 import { Hint } from "../../../components/ui/hint";
 import { PackageLinks } from "../../../components/ui/package-links";
 
-const BlogPage = ({ params }: { params: { path?: string[] } }) => {
-    const path = '/blog/' + (params.path?.join('/') || '');
+const BlogPage = ({ params }: { params: { segments?: string[] } }) => {
+    const pathnane = '/blog/' + (params.segments?.join('/') || '');
 
     return (
         <Page
-            pathname={path}
+            pathname={pathnane}
             components={{
                 Hint,
                 PackageLinks,
