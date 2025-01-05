@@ -12,11 +12,9 @@ const nextConfig = {
             },
         ]
     },
-    experimental: {
-        outputFileTracingIncludes: {
-            '/api/search': ['./docs/**/*', './blog/**/*', './README.md'],
-        },
-    }
+    outputFileTracingIncludes: {
+        '/api/search': ['./docs/**/*', './blog/**/*', './README.md'],
+    },
 };
 
 export default nextConfig;

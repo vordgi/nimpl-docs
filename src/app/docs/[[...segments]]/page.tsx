@@ -2,8 +2,9 @@ import { Page, getMetadata, getStaticParams } from "../robindoc";
 import { Hint } from "../../../components/ui/hint";
 import { PackageLinks } from "../../../components/ui/package-links";
 
-const DocsPage = ({ params }: { params: { segments?: string[] } }) => {
-    const pathname = '/docs/' + (params.segments?.join('/') || '');
+const DocsPage =  async ({ params }: { params: Promise<{ segments?: string[] }> }) => {
+    const { segments = [] } = await params;
+    const pathname = '/docs/' + segments.join('/');
 
     return (
         <Page
@@ -19,9 +20,11 @@ const DocsPage = ({ params }: { params: { segments?: string[] } }) => {
     );
 }
 
-export const generateMetadata = async ({ params }: { params: { segments?: string[] } }) => {
-    const pathname = '/docs/' + (params.segments?.join('/') || '');
+export const generateMetadata = async ({ params }: { params: Promise<{ segments?: string[] }> }) => {
+    const { segments = [] } = await params;
+    const pathname = ['/docs', ...segments].join('/');
     const metadata = await getMetadata(pathname);
+
     return {
         ...metadata,
         alternates: {
