@@ -12,7 +12,7 @@ import { theme } from "./theme";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    metadataBase: new URL('https://nimpl.tech'),
+    metadataBase: new URL('https://nimpl.dev'),
     title: "Solutions for next.js | Nimpl",
     description: "Nimpl documentation. Solutions for your Next.js project",
     openGraph: {
