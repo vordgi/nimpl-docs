@@ -69,7 +69,7 @@ export const Implementations = () => (
                 <h2>Tools</h2>
                 <div className="implementations-list">
                     <a
-                        href="https://inio.nimpl.tech/"
+                        href="https://inio.nimpl.dev/"
                         className="implementations-card"
                         target="_blank"
                         rel="noopener noreferrer"

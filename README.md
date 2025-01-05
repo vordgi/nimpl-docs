@@ -4,7 +4,7 @@
 
 <!---robin-->
 
-Read the documentation in a convenient interface at [nimpl.tech/docs](https://nimpl.tech/docs)
+Read the documentation in a convenient interface at [nimpl.dev/docs](https://nimpl.dev/docs)
 
 <!---/robin-->
 
