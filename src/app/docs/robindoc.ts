@@ -21,7 +21,7 @@ export const { Page, Sidebar, getStaticParams, getMetadata, getPageData } = init
         },
         {
             title: 'Server Getters',
-            href: '/getters',
+            href: '/server-getters',
         },
         {
             title: 'Internationalization',
