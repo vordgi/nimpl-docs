@@ -8,13 +8,16 @@ previewName: getters-docs
 
 <PackageLinks npmName="@nimpl/getters" githubName="nimpl-getters" />
 
-(Former [next-impl-getters](https://www.npmjs.com/package/next-impl-getters))
+> [!NOTE]
+> Former [next-impl-getters](https://www.npmjs.com/package/next-impl-getters)
 
 Implementation of server getters in React Server Components without switching to SSR.
 
-*Before using the library, read the [Possible Issues](#possible-issues)*
+> [!Tip]
+> *Before using the library, read the [Possible Issues](#possible-issues)*
 
-Use `@nimpl/getters 2.x` for Next.js v15. For earlier versions of Next.js use `@nimpl/getters 1.x`.
+> [!NOTE]
+> Use `@nimpl/getters 2.x` for Next.js v15. For earlier versions of Next.js use `@nimpl/getters 1.x`.
 
 ## Installation
 
@@ -26,13 +29,14 @@ npm i @nimpl/getters
 ## Current Getters
 
 * [get-pathname](#get-pathname)
-* [get-page-config](#get-page-config)
+* [get-app-pathname](#get-app-pathname)
 * [get-params](#get-params)
+* [get-app-params](#get-app-params)
+* [get-page-config](#get-page-config)
 * [get-search-params](#get-search-params)
 
-<Hint>
-Contexts, due to the release of react v19, have been moved to a separate package - [@nimpl/context](./context.mdx)
-</Hint>
+> [!TIP]
+> Contexts, due to the release of react v19, have been moved to a separate package - [@nimpl/context](./context.mdx)
 
 ## Stability
 
@@ -59,6 +63,10 @@ export default function Component() {
     )
 }
 ```
+
+## get-app-pathname (in test)
+
+Same as [get-pathname](#get-pathname), but works better with application router and static mode.
 
 ## get-params
 
@@ -97,6 +105,10 @@ const params = getParams({
 // "/it/base/unknown-page" -> { locale: "it", subpaths: ["unknown-page"] }
 // "/it/invalid/unknown-page" -> null
 ```
+
+## get-app-params (in test)
+
+Same as [get-params](#get-params), but works better with application router and static mode.
 
 ## get-page-config
 

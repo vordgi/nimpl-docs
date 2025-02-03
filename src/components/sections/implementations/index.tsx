@@ -9,7 +9,7 @@ export const Implementations = () => (
             <div>
                 <h2>UI/UX Implementations</h2>
                 <div className="implementations-list">
-                    <Link href="/docs/getters" className="implementations-card">
+                    <Link href="/docs/server-getters" className="implementations-card">
                         <h3>@nimpl/getters</h3>
                         <p>Server getters and Server contexts for RSC without switching to SSR</p>
                     </Link>

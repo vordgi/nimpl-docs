@@ -6,8 +6,18 @@ const nextConfig = {
     async redirects() {
         return [
             {
-                source: '/:name(getters|i18n|ab-tests|cache-adapter|cache-in-memory|classnames-minifier|config|context|middleware-chain|router)/:path*',
+                source: '/:name(i18n|ab-tests|cache-adapter|cache-in-memory|classnames-minifier|config|context|middleware-chain|router)/:path*',
                 destination: '/docs/:name',
+                statusCode: 308,
+            },
+            {
+                source: '/getters',
+                destination: '/docs/server-getters',
+                statusCode: 308,
+            },
+            {
+                source: '/docs/getters',
+                destination: '/docs/server-getters',
                 statusCode: 308,
             },
         ]
