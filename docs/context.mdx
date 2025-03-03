@@ -8,17 +8,12 @@ previewName: context-docs
 
 <PackageLinks npmName="@nimpl/context" githubName="nimpl-context" />
 
-<Hint>
-**Important**: this functionality is unstable. The node.js functionality used within contexts may lose content.
-</Hint>
-
 Implementation of server contexts in React Server Components without switching to SSR.
 
 *Before using the library, read the [Possible Issues](#possible-issues)*
 
-<Hint>
-Previously, contexts were part of [@nimpl/getters](./server-getters.mdx), but with the release of react 19, they were moved to a separate package.
-</Hint>
+> [!NOTE]
+> Previously, contexts were part of [@nimpl/getters](./server-getters.mdx), but with the release of react 19, they were moved to a separate package.
 
 ## Installation
 
@@ -33,13 +28,14 @@ Package covered with tests. Tests are run on every release and every 6 hours on 
 
 In this way, you can be sure that if there is a breaking change in `Next.js`, this will immediately become known. *Even before the release of a stable version of `Next.js`.*
 
-<Hint>
-The package uses unstable `AsyncLocalStorage` instead of `react cache` for the reason that cache from react.js works for the entire page as a whole.
-The current implementation allows to fully reproduce the logic of react client contexts.
-That is, contexts are available only inside the DOM from the provider, including for asynchronous components.
-</Hint>
+> [!NOTE]
+> The package uses node `AsyncLocalStorage` instead of `react cache` for the reason that cache from react.js works for the entire page as a whole.
+> The current implementation allows to fully reproduce the logic of react client contexts. That is, contexts are available only inside the DOM from the provider, including for asynchronous components.
 
 ## How to
+
+> [!IMPORTANT]
+> Since next.js builds Layout and Page independently, they cannot have a single context. That is, you need to initiate the context in both `layout.tsx` and `page.tsx`
 
 1\. **Initialize the context**
 ```tsx filename="./ExampleContext.ts"
@@ -99,12 +95,6 @@ export default function ParentComponent() {
 
 ## Possible Issues
 
-### Context loosing
-
-The functionality of node.js, used within contexts can lose content (*and this is a quote from the developers and all available information*).
-
-If you have experience with this issue - please share in the issues and discussions of the package.
-
 ### Layouts don't re-render
 
 As a potential risk of a server-side solution, the problem of Layouts is mentioned, that they do not re-render, which is inherent in the app router foundation. I don't see any reason to change this logic.
@@ -112,6 +102,12 @@ As a potential risk of a server-side solution, the problem of Layouts is mention
 The most reliable approach, in my opinion, is to output messages to the console or even throw an error when this function is used in Layout or Error without the necessary conditions.
 
 Since at the moment it is impossible to determine in which route the component is rendered - there are no automatic errors. However, it is strongly discouraged to use this feature in layouts.
+
+### Context loosing
+
+The functionality of node.js, used within contexts can lose content: "In rare situations, the current store is lost in one of the asynchronous operations" ([nodejs docs](https://nodejs.org/api/async_context.html#async_context_troubleshooting_context_loss)).
+
+A similar approach is used in dozens of places inside nextjs. But if you have experience with this issue - please share in the issues and discussions of the package.
 
 ## Examples
 
