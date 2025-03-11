@@ -1,6 +1,9 @@
+import { AlertDialogAction } from "@/components/ui/alert-dialog-action";
+import { Hint } from "@/components/ui/hint";
+import { PackageLinks } from "@/components/ui/package-links";
+import { ToastAction } from "@/components/ui/toast-action";
+
 import { Page, getMetadata, getStaticParams } from "../robindoc";
-import { Hint } from "../../../components/ui/hint";
-import { PackageLinks } from "../../../components/ui/package-links";
 
 const DocsPage =  async ({ params }: { params: Promise<{ segments?: string[] }> }) => {
     const { segments = [] } = await params;
@@ -12,6 +15,8 @@ const DocsPage =  async ({ params }: { params: Promise<{ segments?: string[] }> 
             components={{
                 Hint,
                 PackageLinks,
+                ToastAction,
+                AlertDialogAction,
             }}
             config={{
                 publicDirs: ['public']

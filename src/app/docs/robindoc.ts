@@ -60,6 +60,17 @@ export const { Page, Sidebar, getStaticParams, getMetadata, getPageData } = init
             href: '/ab-tests',
         },
         {
+            title: 'External Tools',
+            type: 'heading',
+        },
+        {
+            title: 'Top-layer',
+            href: '/top-layer',
+            configuration: {
+                sourceRoot: 'https://github.com/vordgi/top-layer/blob/main/README.md',
+            }
+        },
+        {
             title: 'Cache Implementations',
             type: 'heading',
         },

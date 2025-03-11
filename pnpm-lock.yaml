@@ -32,6 +32,9 @@ importers:
       sass:
         specifier: 1.83.1
         version: 1.83.1
+      top-layer:
+        specifier: 1.1.2
+        version: 1.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@types/node':
         specifier: 22.10.5
@@ -1817,6 +1820,12 @@ packages:
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
+
+  top-layer@1.1.2:
+    resolution: {integrity: sha512-NYH2XN3Hedbve4qlDV3EXhIoVoauxhZC/SLBB5kaec9S4zkSVt9O0qGtfsARiI4QSmSdjkMECvyQFUZGPCGRgA==}
+    peerDependencies:
+      react: '>= 17.0.0'
+      react-dom: '>= 17.0.0'
 
   trim-lines@3.0.1:
     resolution: {integrity: sha512-kRj8B+YHZCc9kQYdWfJB2/oUl9rA99qbowYYBtr4ui4mZyAQ2JpvVBd/6U2YloATfqBhBTSMhTpgBHtU0Mf3Rg==}
@@ -3916,6 +3925,11 @@ snapshots:
   to-regex-range@5.0.1:
     dependencies:
       is-number: 7.0.0
+
+  top-layer@1.1.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   trim-lines@3.0.1: {}
 
