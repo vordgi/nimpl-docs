@@ -1,6 +1,6 @@
 'use client'
 
-import { useDialogAction } from "top-layer/dialog/hooks";
+import { useDialogAction } from "top-layer/dialog";
 
 import "./alert-dialog-action.scss";
 

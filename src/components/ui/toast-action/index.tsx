@@ -1,6 +1,6 @@
 'use client'
 
-import { useToastAction } from "top-layer/toaster/hooks";
+import { useToastAction } from "top-layer/toaster";
 
 import "./toast-action.scss";
 

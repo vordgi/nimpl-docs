@@ -1,12 +1,11 @@
-
 "use client";
 
 import { useState } from "react";
 import { useDialogAction } from "top-layer/dialog/hooks";
-import { Dialog } from "top-layer/dialog/dialog";
+import { Dialog } from "top-layer/dialog";
+import { ToastAction } from "../toast-action";
 
 import "./alert-dialog.scss";
-import { ToastAction } from "../toast-action";
 
 export const AlertDialog: React.FC = () => {
     const [state, setState] = useState<string | null>(null);
